@@ -1,2 +1,2 @@
-# UndergraduateCryptoNetThesisResearch
-This repository is used for the purpose of undergraduate thesis research. In this repository, the effects of various neural network configurations in the encrypted domain are investigated.
+# Undergraduate CryptoNet Thesis Research:
+See "he-transformer-setup-instructions.sh" to rapidly install IntelAI's he-transformer
