@@ -8,7 +8,7 @@ from base_classifier.project.consts import TrainingParameters
 if __name__ == "__main__":
     _train = 1
     checkpoint_file = "conv_epoch_48.ckpt"
-    (x_train, y_train), (x_test, y_test) = load_MNIST(train_percentage=10, test_percentage=100)
+    (x_train, y_train), (x_test, y_test) = load_MNIST_flat(train_percentage=10, test_percentage=100)
 
     if _train:
         train(x_train, y_train, TrainingParameters.learning_rate, TrainingParameters.num_epochs,

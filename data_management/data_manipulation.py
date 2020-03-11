@@ -58,11 +58,19 @@ def load_MNIST(train_percentage=100, test_percentage=100):
     return (x_train, y_train), (x_test, y_test)
 
 
-def load_MNIST_flat():
+def load_MNIST_flat(train_percentage=100, test_percentage=100):
     x_train = np.load(np_save_dir + "x_train.npy")
     y_train = np.load(np_save_dir + "y_train.npy")
     x_test = np.load(np_save_dir + "x_test.npy")
     y_test = np.load(np_save_dir + "y_test.npy")
+
+    train_count = x_train.shape[0]
+    test_count = x_test.shape[0]
+    adjusted_train_count = round(train_percentage/100 * train_count)
+    adjusted_test_count = round(test_percentage/100 * test_count)
+
+    (x_train, y_train), (x_test, y_test) = (x_train[:adjusted_train_count], y_train[:adjusted_train_count]), \
+                                           (x_test[:adjusted_test_count], y_test[:adjusted_test_count])
 
     return (x_train, y_train), (x_test, y_test)
 
