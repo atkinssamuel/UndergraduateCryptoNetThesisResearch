@@ -1,6 +1,8 @@
 import tensorflow as tf
 import numpy as np
-from project.dense.dense_train import dense_checkpoint_dir, dense_results_dir
+
+dense_checkpoint_dir = "weights/dense/"
+dense_results_dir = "results/dense/"
 
 
 def dense_test(x_test, y_test, checkpoint_file):

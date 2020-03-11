@@ -1,8 +1,8 @@
-from data_management.data_manipulation import import_MNIST, load_MNIST, load_MNIST_flat
-from project.dense.dense_train import dense_train
-from project.dense.dense_test import dense_test
-from project.conv.conv_train import conv_train
-from project.conv.conv_test import conv_test
+from unencrypted_classifier.data_management.data_manipulation import import_MNIST, load_MNIST, load_MNIST_flat
+from unencrypted_classifier.project.dense.dense_train import dense_train
+from unencrypted_classifier.project.dense.dense_test import dense_test
+from unencrypted_classifier.project.conv.conv_train import conv_train
+from unencrypted_classifier.project.conv.conv_test import conv_test
 
 
 def dense(_train, x_train, y_train, x_test, y_test):
@@ -40,6 +40,7 @@ def conv(_train, x_train, y_train, x_test, y_test):
 
 if __name__ == "__main__":
     _train = 1
+    import_MNIST()
     (x_train, y_train), (x_test, y_test) = load_MNIST()
     (x_train, y_train), (x_test, y_test) = (x_train, y_train), (x_test, y_test)
     conv(_train, x_train, y_train, x_test, y_test)
