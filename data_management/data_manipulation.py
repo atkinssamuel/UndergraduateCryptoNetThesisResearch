@@ -1,8 +1,8 @@
 from mnist import MNIST
 import numpy as np
 
-MNIST_dir = "data_management/dataset/"
-np_save_dir = "data_management/np_dataset/"
+MNIST_dir = "../data_management/dataset/"
+np_save_dir = "../data_management/np_dataset/"
 
 
 def import_MNIST():

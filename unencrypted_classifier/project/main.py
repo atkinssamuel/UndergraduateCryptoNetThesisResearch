@@ -1,4 +1,4 @@
-from unencrypted_classifier.data_management.data_manipulation import import_MNIST, load_MNIST, load_MNIST_flat
+from data_management.data_manipulation import import_MNIST, load_MNIST, load_MNIST_flat
 from unencrypted_classifier.project.dense.dense_train import dense_train
 from unencrypted_classifier.project.dense.dense_test import dense_test
 from unencrypted_classifier.project.conv.conv_train import conv_train
@@ -22,7 +22,6 @@ def dense(_train, x_train, y_train, x_test, y_test):
 
 
 def conv(_train, x_train, y_train, x_test, y_test):
-
     # Training Parameters:
     learning_rate = 0.0001
     num_epochs = 50
@@ -40,7 +39,6 @@ def conv(_train, x_train, y_train, x_test, y_test):
 
 if __name__ == "__main__":
     _train = 1
-    import_MNIST()
-    (x_train, y_train), (x_test, y_test) = load_MNIST()
+    (x_train, y_train), (x_test, y_test) = load_MNIST(train_percentage=100, test_percentage=100)
     conv(_train, x_train, y_train, x_test, y_test)
 
