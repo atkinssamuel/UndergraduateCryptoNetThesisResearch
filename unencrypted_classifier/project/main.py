@@ -42,6 +42,5 @@ if __name__ == "__main__":
     _train = 1
     import_MNIST()
     (x_train, y_train), (x_test, y_test) = load_MNIST()
-    (x_train, y_train), (x_test, y_test) = (x_train, y_train), (x_test, y_test)
     conv(_train, x_train, y_train, x_test, y_test)
 
