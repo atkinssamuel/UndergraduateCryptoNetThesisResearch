@@ -1,7 +1,7 @@
 import tensorflow as tf
 import numpy as np
 from mnist_models.microsoft_cryptonet_model.project.consts import results_dir, checkpoint_dir
-
+import time
 
 def test(x_test, y_test, checkpoint_file):
     # Parameters:
@@ -61,15 +61,13 @@ def test(x_test, y_test, checkpoint_file):
     l8_output_nodes = 10
     W8 = tf.Variable(tf.truncated_normal([l6_output_nodes, l8_output_nodes]))
     b8 = tf.Variable(tf.zeros(l8_output_nodes))
-    y8 = tf.matmul(y7, W8) + b8
-
-    # Layer 9: Sigmoid Activation
-    # Sigmoid is implicit in the cost function
-    y = tf.math.sigmoid(y8)
+    y = tf.matmul(y7, W8) + b8
 
     # For weight saving:
     saver = tf.train.Saver()
     checkpoint = checkpoint_dir + checkpoint_file
+
+    start_time = time.time()
 
     with tf.Session() as sess:
         saver.restore(sess, checkpoint)
@@ -80,5 +78,5 @@ def test(x_test, y_test, checkpoint_file):
         accuracy = np.sum(np.equal(predictions, targets))/test_output.shape[0] * 100
 
         print(f"Testing Accuracy = {accuracy}%")
-
+    print(f"Testing Time Elapsed = {time.time() - start_time}s")
     return

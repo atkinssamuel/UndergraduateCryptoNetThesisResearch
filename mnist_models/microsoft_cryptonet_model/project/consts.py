@@ -6,7 +6,7 @@ encrypted_results_dir = "results/encrypted/"
 unencrypted_results_dir = "results/unencrypted/"
 encrypted_numpy_dir = "results/encrypted_numpy/"
 unencrypted_numpy_dir = "results/unencrypted_numpy/"
-train_flag = 1
+train_flag = 0
 encrypted_flag = 0
 
 
