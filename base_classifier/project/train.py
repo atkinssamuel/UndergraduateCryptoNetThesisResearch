@@ -1,10 +1,10 @@
 import tensorflow as tf
 import numpy as np
-import matplotlib.pyplot as plt
-from base_classifier.project.consts import base_classifier_results_dir, base_classifier_checkpoint_dir
+from base_classifier.project.consts import *
+import ngraph_bridge
 
 
-def train(x_train, y_train, learning_rate, num_epochs, batch_size, checkpoint_frequency=10, num_models=200):
+def train(x_train, y_train, learning_rate, num_epochs, batch_size, checkpoint_frequency=10, num_models=200, config=None):
     # Parameters:
     # Base Params:
     input_nodes = x_train.shape[1]
@@ -25,7 +25,7 @@ def train(x_train, y_train, learning_rate, num_epochs, batch_size, checkpoint_fr
     # Layer 1 variables:
     W1 = tf.Variable(tf.truncated_normal([input_nodes, hidden_layer_1], stddev=0.15))
     b1 = tf.Variable(tf.zeros([hidden_layer_1]))
-    y1 = tf.math.sigmoid(tf.matmul(x, W1) + b1)
+    y1 = tf.math.square(tf.matmul(x, W1) + b1)
     # Layer 2 variables:
     W2 = tf.Variable(tf.truncated_normal([hidden_layer_1, output_layer], stddev=0.15))
     b2 = tf.Variable(tf.zeros([output_layer]))
@@ -43,7 +43,7 @@ def train(x_train, y_train, learning_rate, num_epochs, batch_size, checkpoint_fr
     training_losses = []
     training_accuracies = []
 
-    with tf.Session() as sess:
+    with tf.Session(config=config) as sess:
         sess.run(tf.global_variables_initializer())
         for epoch_iteration in range(num_epochs):
             for batch in range(int(sample_count / batch_size)):
@@ -63,22 +63,14 @@ def train(x_train, y_train, learning_rate, num_epochs, batch_size, checkpoint_fr
                   f"Training Accuracy = {training_accuracy}%, {round(epoch_iteration / num_epochs * 100, 2)}% Complete")
 
             if epoch_iteration % checkpoint_frequency == 0:
-                checkpoint = base_classifier_checkpoint_dir + f"conv_epoch_{epoch_iteration}.ckpt"
+                checkpoint = checkpoint_dir + f"conv_epoch_{epoch_iteration}.ckpt"
                 saver.save(sess, checkpoint)
         sess.close()
+    if encrypted_flag:
+        np.save(encrypted_numpy_dir + 'encrypted_training_losses', training_losses)
+        np.save(encrypted_numpy_dir + 'encrypted_training_accuracies', training_accuracies)
+    else:
+        np.save(unencrypted_numpy_dir + 'unencrypted_training_losses', training_losses)
+        np.save(unencrypted_numpy_dir + 'unencrypted_training_accuracies', training_accuracies)
 
-    # Loss Plotting:
-    plt.title("Training Loss:")
-    plt.ylabel("Loss")
-    plt.xlabel("Epoch Iteration")
-    plt.plot(training_losses)
-    plt.savefig(base_classifier_results_dir + "training_loss.png")
-    plt.show()
-    # Accuracy Plotting:
-    plt.title("Training Accuracy:")
-    plt.ylabel("Accuracy %")
-    plt.xlabel("Epoch Iteration")
-    plt.plot(training_accuracies, "g")
-    plt.savefig(base_classifier_results_dir + "training_accuracy.png")
-    plt.show()
     return

@@ -1,6 +1,6 @@
 import tensorflow as tf
 import numpy as np
-from base_classifier.project.consts import base_classifier_results_dir, base_classifier_checkpoint_dir
+from base_classifier.project.consts import results_dir, checkpoint_dir
 
 
 def test(x_test, y_test, checkpoint_file):
@@ -37,7 +37,7 @@ def test(x_test, y_test, checkpoint_file):
     cost = tf.reduce_sum(tf.math.square(y_ - y))
     # For weight saving:
     saver = tf.train.Saver()
-    checkpoint = base_classifier_checkpoint_dir + checkpoint_file
+    checkpoint = checkpoint_dir + checkpoint_file
 
     with tf.Session() as sess:
         saver.restore(sess, checkpoint)
