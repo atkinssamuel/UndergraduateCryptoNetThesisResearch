@@ -9,6 +9,7 @@ unencrypted_numpy_dir = "results/unencrypted_numpy/"
 train_flag = 1
 encrypted_flag = 0
 
+
 class BackendOptions:
     SEAL = "HE_SEAL"
     CPU = "CPU"
@@ -29,7 +30,7 @@ class TrainingParameters:
     learning_rate = 0.01
     num_epochs = 300
     num_models = 100
-    batch_size = 512
+    batch_size = 64
     checkpoint_frequency = 2
     training_dataset_percentage = 100
 

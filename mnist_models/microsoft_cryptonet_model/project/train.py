@@ -19,18 +19,17 @@ def train(x_train, y_train, learning_rate, num_epochs, batch_size, checkpoint_fr
 
 
     # Layer 1: Convolutional
-    l1_paddings = tf.constant([[0, 0], [1, 0], [0, 1], [0, 0]])
-    l1 = tf.pad(x, l1_paddings, "CONSTANT")
+    l1_padding = tf.constant([[0, 0], [1, 0], [1, 0], [0, 0]])
+    l1 = tf.pad(x, l1_padding, "CONSTANT")
     k1_width = 5
     l1_feature_maps = 5
-    l1_padding = "VALID"
+    l1_padding_type = "VALID"
     l1_strides = [2, 2]
     k1 = tf.Variable(tf.random_normal([k1_width, k1_width, input_depth, l1_feature_maps]))
-    y1 = tf.nn.conv2d(l1, filter=k1, strides=l1_strides, padding=l1_padding)
-
+    y1 = tf.nn.conv2d(l1, filter=k1, strides=l1_strides, padding=l1_padding_type)
 
     # Layer 2: Square Activation
-    y2 = tf.math.square(y1)
+    y2 = tf.square(y1)
 
     # Layer 3: Scaled Mean Pool
     l3_window_shape = [3, 3]
@@ -38,14 +37,12 @@ def train(x_train, y_train, learning_rate, num_epochs, batch_size, checkpoint_fr
     y3 = tf.nn.pool(y2, window_shape=l3_window_shape, pooling_type="AVG", padding="SAME", strides=l3_strides)
 
     # Layer 4: Convolutional
-    # l1_paddings = tf.constant([[0, 0], [1, 0], [0, 1], [0, 0]])
-    # l1 = tf.pad(x, l1_paddings, "CONSTANT")
     k4_width = 5
     l4_feature_maps = 50
-    l4_padding = "VALID"
+    l4_padding_type = "VALID"
     l4_strides = [2, 2]
     k4 = tf.Variable(tf.random_normal([k4_width, k4_width, l1_feature_maps, l4_feature_maps]))
-    y4 = tf.nn.conv2d(y3, filter=k4, strides=l4_strides, padding=l4_padding)
+    y4 = tf.nn.conv2d(y3, filter=k4, strides=l4_strides, padding=l4_padding_type)
 
     # Layer 5: Scaled Mean Pool:
     l5_window_shape = [3, 3]
@@ -61,7 +58,7 @@ def train(x_train, y_train, learning_rate, num_epochs, batch_size, checkpoint_fr
     y6 = tf.matmul(y5, W6) + b6
 
     # Layer 7: Square Activation
-    y7 = tf.math.square(y6)
+    y7 = tf.square(y6)
 
     # Layer 8: Fully Connected
     l8_output_nodes = 10
@@ -75,7 +72,6 @@ def train(x_train, y_train, learning_rate, num_epochs, batch_size, checkpoint_fr
 
     # cost = tf.reduce_sum(tf.math.square(y_ - y))
     cost = tf.nn.softmax_cross_entropy_with_logits(labels=y_, logits=y)
-
 
     optimizer = tf.train.AdamOptimizer(learning_rate).minimize(cost)
 
@@ -96,6 +92,7 @@ def train(x_train, y_train, learning_rate, num_epochs, batch_size, checkpoint_fr
                 batch_y = y_train[batch * batch_size: (1 + batch) * batch_size]
                 # Instantiating the inputs and targets with the batch values:
                 output = np.array(sess.run([optimizer], feed_dict={x: batch_x, y_: batch_y}))
+
             training_output, training_loss = sess.run([y, cost], feed_dict={x: x_train, y_: y_train})
             training_loss = np.mean(training_loss)
             training_losses.append(training_loss)
@@ -108,7 +105,7 @@ def train(x_train, y_train, learning_rate, num_epochs, batch_size, checkpoint_fr
                   f"Training Accuracy = {training_accuracy}%, {round(epoch_iteration / num_epochs * 100, 2)}% Complete")
 
             if epoch_iteration % checkpoint_frequency == 0:
-                checkpoint = checkpoint_dir + f"conv_epoch_{epoch_iteration}.ckpt"
+                checkpoint = checkpoint_dir + f"microsoft_mnist_{epoch_iteration}.ckpt"
                 saver.save(sess, checkpoint)
         sess.close()
     if encrypted_flag:
