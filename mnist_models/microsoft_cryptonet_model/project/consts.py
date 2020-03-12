@@ -20,18 +20,18 @@ class EncryptionParameters:
         backend = BackendOptions.SEAL
         encryption_parameters = ""
     else:
-        backend = BackendOptions.CPU
+        backend = BackendOptions.XLA
         encryption_parameters = ""
     config = encryption_config(backend=backend, encryption_parameters=encryption_parameters)
 
 
 class TrainingParameters:
     learning_rate = 0.001
-    num_epochs = 50
+    num_epochs = 500
     num_models = 100
-    batch_size = 2048
+    batch_size = 256
     checkpoint_frequency = 2
-    training_dataset_percentage = 50
+    training_dataset_percentage = 10
 
 
 class TestingParameters:
