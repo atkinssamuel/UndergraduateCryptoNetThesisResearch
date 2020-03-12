@@ -1,38 +1,37 @@
 import tensorflow as tf
 import numpy as np
 from mnist_models.microsoft_cryptonet_model.project.consts import *
-import ngraph_bridge
+
+if encrypted_flag:
+    import ngraph_bridge
 
 
 def train(x_train, y_train, learning_rate, num_epochs, batch_size, checkpoint_frequency=10, num_models=200, config=None):
     # Parameters:
     # Base Params:
-    input_nodes = x_train.shape[1]
+    input_depth = 1
     categories = 10
     image_dim = 28
 
-    # Fully Connected:
-    increase_factor = 1.5
-    hidden_layer_1 = round(input_nodes * increase_factor)
-    # hidden_layer_2 = round(hidden_layer_1 * increase_factor)
-    output_layer = 10
-
-    # Defining Layers:
     # Defining Placeholders:
-    x = tf.placeholder(tf.float32, [None, image_dim * image_dim])
+    x = tf.placeholder(tf.float32, [None, image_dim, image_dim, input_depth])
     y_ = tf.placeholder(tf.float32, [None, categories])
 
-    # Layer 1 variables:
-    W1 = tf.Variable(tf.truncated_normal([input_nodes, hidden_layer_1], stddev=0.15))
-    b1 = tf.Variable(tf.zeros([hidden_layer_1]))
-    y1 = tf.math.square(tf.matmul(x, W1) + b1)
-    # Layer 2 variables:
-    W2 = tf.Variable(tf.truncated_normal([hidden_layer_1, output_layer], stddev=0.15))
-    b2 = tf.Variable(tf.zeros([output_layer]))
-    y = tf.nn.softmax(tf.matmul(y1, W2) + b2)
 
-    cost = tf.reduce_sum(tf.math.square(y_ - y))
-    optimizer = tf.train.AdamOptimizer(learning_rate).minimize(cost)
+    # Layer 1: Convolutional:
+    l1_paddings = tf.constant([[0, 0], [1, 0], [0, 1], [0, 0]])
+    l1 = tf.pad(x, l1_paddings, "CONSTANT")
+    k1_width = 5
+    l1_feature_maps = 5
+    l1_padding = "VALID"
+    k1 = tf.Variable(tf.random_normal([k1_width, k1_width, input_depth, l1_feature_maps]))
+    y1 = tf.nn.conv2d(l1, filter=k1, strides=[2, 2], padding=l1_padding)
+
+
+    y = y1
+
+    # cost = tf.reduce_sum(tf.math.square(y_ - y))
+    # optimizer = tf.train.AdamOptimizer(learning_rate).minimize(cost)
 
     # Miscellaneous quantities:
     sample_count = np.shape(x_train)[0]
@@ -50,7 +49,8 @@ def train(x_train, y_train, learning_rate, num_epochs, batch_size, checkpoint_fr
                 batch_x = x_train[batch * batch_size: (1 + batch) * batch_size]
                 batch_y = y_train[batch * batch_size: (1 + batch) * batch_size]
                 # Instantiating the inputs and targets with the batch values:
-                output = np.array(sess.run([optimizer], feed_dict={x: batch_x, y_: batch_y}))
+                output = np.array(sess.run([y1], feed_dict={x: batch_x, y_: batch_y}))
+                print(output.shape)
             training_output, training_loss = sess.run([y, cost], feed_dict={x: x_train, y_: y_train})
             training_loss = np.mean(training_loss)
             training_losses.append(training_loss)

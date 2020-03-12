@@ -1,10 +1,10 @@
-from data_loading.load import load_MNIST_flat
+from data_loading.load import load_MNIST
 from mnist_models.microsoft_cryptonet_model.project.train import train
 from mnist_models.microsoft_cryptonet_model.project.test import test
 from mnist_models.microsoft_cryptonet_model.project.consts import *
 
 if __name__ == "__main__":
-    (x_train, y_train), (x_test, y_test) = load_MNIST_flat(
+    (x_train, y_train), (x_test, y_test) = load_MNIST(
         train_percentage=TrainingParameters.training_dataset_percentage,
         test_percentage=TestingParameters.testing_dataset_percentage)
 
