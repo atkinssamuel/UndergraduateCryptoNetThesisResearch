@@ -26,12 +26,12 @@ class EncryptionParameters:
 
 
 class TrainingParameters:
-    learning_rate = 0.001
-    num_epochs = 500
+    learning_rate = 0.01
+    num_epochs = 300
     num_models = 100
-    batch_size = 256
+    batch_size = 512
     checkpoint_frequency = 2
-    training_dataset_percentage = 10
+    training_dataset_percentage = 100
 
 
 class TestingParameters:

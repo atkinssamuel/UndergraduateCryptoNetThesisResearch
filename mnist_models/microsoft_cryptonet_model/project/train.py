@@ -61,7 +61,7 @@ def train(x_train, y_train, learning_rate, num_epochs, batch_size, checkpoint_fr
     y6 = tf.matmul(y5, W6) + b6
 
     # Layer 7: Square Activation
-    y7 = tf.math.sigmoid(y6)
+    y7 = tf.math.square(y6)
 
     # Layer 8: Fully Connected
     l8_output_nodes = 10
