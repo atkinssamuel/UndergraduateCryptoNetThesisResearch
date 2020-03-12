@@ -1,6 +1,6 @@
 import tensorflow as tf
 import numpy as np
-from base_classifier.project.consts import results_dir, checkpoint_dir
+from mnist_models.microsoft_cryptonet_model.project.consts import results_dir, checkpoint_dir
 
 
 def test(x_test, y_test, checkpoint_file):
@@ -13,7 +13,7 @@ def test(x_test, y_test, checkpoint_file):
     # Fully Connected:
     increase_factor = 1.5
     hidden_layer_1 = round(input_nodes * increase_factor)
-    hidden_layer_2 = round(hidden_layer_1 * increase_factor)
+    # hidden_layer_2 = round(hidden_layer_1 * increase_factor)
     output_layer = 10
 
     # Defining Layers:
@@ -26,15 +26,11 @@ def test(x_test, y_test, checkpoint_file):
     b1 = tf.Variable(tf.zeros([hidden_layer_1]))
     y1 = tf.math.square(tf.matmul(x, W1) + b1)
     # Layer 2 variables:
-    W2 = tf.Variable(tf.truncated_normal([hidden_layer_1, hidden_layer_2], stddev=0.15))
-    b2 = tf.Variable(tf.zeros([hidden_layer_2]))
-    y2 = tf.math.square(tf.matmul(y1, W2) + b2)
-    # Layer 3 Variables:
-    W3 = tf.Variable(tf.truncated_normal([hidden_layer_2, output_layer], stddev=0.15))
-    b3 = tf.Variable(tf.zeros([output_layer]))
-    y = tf.nn.softmax(tf.matmul(y2, W3) + b3)
+    W2 = tf.Variable(tf.truncated_normal([hidden_layer_1, output_layer], stddev=0.15))
+    b2 = tf.Variable(tf.zeros([output_layer]))
+    y = tf.nn.softmax(tf.matmul(y1, W2) + b2)
 
-    cost = tf.reduce_sum(tf.math.square(y_ - y))
+
     # For weight saving:
     saver = tf.train.Saver()
     checkpoint = checkpoint_dir + checkpoint_file

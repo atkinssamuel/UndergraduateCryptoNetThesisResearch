@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from base_classifier.project.consts import *
+from mnist_models.microsoft_cryptonet_model.project.consts import *
 
 if __name__ == "__main__":
     if encrypted_flag:

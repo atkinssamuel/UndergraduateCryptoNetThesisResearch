@@ -1,6 +1,6 @@
 import numpy as np
 
-np_save_dir = "../data_management/np_dataset/"
+np_save_dir = "../../data_management/np_dataset/"
 
 
 def load_MNIST(train_percentage=100, test_percentage=100):

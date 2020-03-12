@@ -34,3 +34,7 @@ def import_MNIST():
     np.save(np_save_dir + 'y_test', y_test_categorical)
     return
 
+
+if __name__ == "__main__":
+    import_MNIST()
+
