@@ -6,30 +6,66 @@ from mnist_models.microsoft_cryptonet_model.project.consts import results_dir, c
 def test(x_test, y_test, checkpoint_file):
     # Parameters:
     # Base Params:
-    input_nodes = x_test.shape[1]
+    input_depth = 1
     categories = 10
     image_dim = 28
 
-    # Fully Connected:
-    increase_factor = 1.5
-    hidden_layer_1 = round(input_nodes * increase_factor)
-    # hidden_layer_2 = round(hidden_layer_1 * increase_factor)
-    output_layer = 10
-
-    # Defining Layers:
     # Defining Placeholders:
-    x = tf.placeholder(tf.float32, [None, image_dim * image_dim])
+    x = tf.placeholder(tf.float32, [None, image_dim, image_dim, input_depth])
     y_ = tf.placeholder(tf.float32, [None, categories])
 
-    # Layer 1 variables:
-    W1 = tf.Variable(tf.truncated_normal([input_nodes, hidden_layer_1], stddev=0.15))
-    b1 = tf.Variable(tf.zeros([hidden_layer_1]))
-    y1 = tf.math.square(tf.matmul(x, W1) + b1)
-    # Layer 2 variables:
-    W2 = tf.Variable(tf.truncated_normal([hidden_layer_1, output_layer], stddev=0.15))
-    b2 = tf.Variable(tf.zeros([output_layer]))
-    y = tf.nn.softmax(tf.matmul(y1, W2) + b2)
 
+    # Layer 1: Convolutional
+    l1_padding = tf.constant([[0, 0], [1, 0], [1, 0], [0, 0]])
+    l1 = tf.pad(x, l1_padding, "CONSTANT")
+    k1_width = 5
+    l1_feature_maps = 5
+    l1_padding_type = "VALID"
+    l1_strides = [2, 2]
+    k1 = tf.Variable(tf.random_normal([k1_width, k1_width, input_depth, l1_feature_maps]))
+    y1 = tf.nn.conv2d(l1, filter=k1, strides=l1_strides, padding=l1_padding_type)
+
+    # Layer 2: Square Activation
+    y2 = tf.square(y1)
+
+    # Layer 3: Scaled Mean Pool
+    l3_window_shape = [3, 3]
+    l3_strides = [1, 1]
+    y3 = tf.nn.pool(y2, window_shape=l3_window_shape, pooling_type="AVG", padding="SAME", strides=l3_strides)
+
+    # Layer 4: Convolutional
+    k4_width = 5
+    l4_feature_maps = 50
+    l4_padding_type = "VALID"
+    l4_strides = [2, 2]
+    k4 = tf.Variable(tf.random_normal([k4_width, k4_width, l1_feature_maps, l4_feature_maps]))
+    y4 = tf.nn.conv2d(y3, filter=k4, strides=l4_strides, padding=l4_padding_type)
+
+    # Layer 5: Scaled Mean Pool:
+    l5_window_shape = [3, 3]
+    l5_strides = [1, 1]
+    y5 = tf.nn.pool(y4, window_shape=l5_window_shape, pooling_type="AVG", padding="SAME", strides=l5_strides)
+    l5_output_dim = 5
+    y5 = tf.reshape(y5, (-1, l5_output_dim * l5_output_dim * l4_feature_maps))
+
+    # Layer 6: Fully Connected
+    l6_output_nodes = 100
+    W6 = tf.Variable(tf.truncated_normal([l5_output_dim * l5_output_dim * l4_feature_maps, l6_output_nodes]))
+    b6 = tf.Variable(tf.zeros([l6_output_nodes]))
+    y6 = tf.matmul(y5, W6) + b6
+
+    # Layer 7: Square Activation
+    y7 = tf.square(y6)
+
+    # Layer 8: Fully Connected
+    l8_output_nodes = 10
+    W8 = tf.Variable(tf.truncated_normal([l6_output_nodes, l8_output_nodes]))
+    b8 = tf.Variable(tf.zeros(l8_output_nodes))
+    y8 = tf.matmul(y7, W8) + b8
+
+    # Layer 9: Sigmoid Activation
+    # Sigmoid is implicit in the cost function
+    y = tf.math.sigmoid(y8)
 
     # For weight saving:
     saver = tf.train.Saver()
