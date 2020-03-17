@@ -1,6 +1,5 @@
 .idea
 __pycache__
-dataset/
-np_dataset/
-weights/
+NumpyDataset/
+Dataset/
 tf_function_error_ngraph_cluster_11.json
