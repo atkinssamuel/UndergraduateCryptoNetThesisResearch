@@ -1,6 +1,8 @@
 #!/bin/bash
-# This file runs the appropriate commands to replice the he-transformer repository located at:
+# This file runs the appropriate commands to replicate the he-transformer repository located at:
 # https://github.com/IntelAI/he-transformer
+# You must change the permissions of the file to run. Run: chmod u+x scriptname
+# Make sure you run with sudo permissions
 cd ~
 sudo apt install g++
 sudo apt update && sudo apt install -y python3-pip virtualenv python3-numpy python3-dev python3-wheel git unzip wget sudo bash-completion build-essential cmake software-properties-common git wget patch diffutils libtinfo-dev autoconf libtool doxygen graphviz
@@ -11,7 +13,6 @@ git clone https://github.com/IntelAI/he-transformer.git
 sudo apt-get clean autoclean
 sudo apt-get autoremove -y
 sudo pip3 install --upgrade pip setuptools virtualenv==16.1.0
-sudo pip3 install cmake --upgrade
 sudo -H pip3 install cmake --upgrade
 wget https://github.com/bazelbuild/bazel/releases/download/0.25.2/bazel-0.25.2-installer-linux-x86_64.sh
 chmod +x ./bazel-0.25.2-installer-linux-x86_64.sh 
