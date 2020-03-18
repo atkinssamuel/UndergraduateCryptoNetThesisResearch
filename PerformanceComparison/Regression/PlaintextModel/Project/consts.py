@@ -1,5 +1,3 @@
-from GlobalHelpers.encryption_config import encryption_config
-
 base_dir = "PerformanceComparison/Regression/PlaintextModel/"
 checkpoint_dir = base_dir + "Weights/"
 results_dir = base_dir + "Results/"

@@ -48,7 +48,7 @@ def test(x_test, y_test):
 
     start_time = time.time()
 
-    with tf.Session() as sess:
+    with tf.Session(config=EncryptionParameters.config) as sess:
         saver.restore(sess, checkpoint)
         test_output, test_loss = sess.run([y, cost], feed_dict={x: x_test, y_: y_test})
 

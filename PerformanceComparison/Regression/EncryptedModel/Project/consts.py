@@ -9,7 +9,9 @@ testing_results_numpy_save_dir = base_dir + "Results/TestingNumpy/"
 testing_results_save_dir = base_dir + "Results/Testing/"
 model_type = "Regression"
 model_name = "EncryptedModel"
+
 train_flag = 1
+
 encrypted_flag = 0
 
 
@@ -49,3 +51,9 @@ class TestingParameters:
     testing_dataset_percentage = 100
     testing_numpy_file_path = "testing_output"
     testing_targets_numpy_file_path = "testing_targets"
+
+
+class PlottingParameters:
+    plot_training_outputs = False
+    plot_training_loss = False
+    plot_testing_outputs = True

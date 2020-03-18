@@ -26,4 +26,3 @@ cd build
 sudo cmake .. -DCMAKE_CXX_COMPILER=clang++-9 -DCMAKE_C_COMPILER=clang-9
 sudo make install
 source $HE_TRANSFORMER/build/external/venv-tf-py3/bin/activate
-pip install numpy

@@ -1,8 +1,7 @@
 from mnist import MNIST
 from keras.datasets import cifar10, cifar100, fashion_mnist, boston_housing
-import csv
 import numpy as np
-from data_management.data_constants import *
+from DataManagement.data_constants import *
 
 
 def import_MNIST():

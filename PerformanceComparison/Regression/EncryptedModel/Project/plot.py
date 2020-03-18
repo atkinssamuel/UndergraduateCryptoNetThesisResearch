@@ -19,7 +19,7 @@ def plot_loss(losses, title, x_label, y_label, save_directory="", save_title="",
     return
 
 
-def plot_regression_outputs(targets, predictions, title, x_label, y_label, save_directory="", save_title="", show=False):
+def plot_regression_outputs(predictions, targets, title, x_label, y_label, save_directory="", save_title="", show=False):
     plt.title(title)
     plt.xlabel(x_label)
     plt.ylabel(y_label)
@@ -45,13 +45,14 @@ def plot_results():
                                 x_label="Data Index", y_label="Housing Price in USD",
                                 save_directory=training_results_save_dir,
                                 save_title=f"training_output_comparison_epoch_{epoch_iteration}.png",
-                                show=False)
+                                show=PlottingParameters.plot_training_outputs)
 
     # Training Loss Plotting:
     training_losses = np.load(training_results_numpy_save_dir + TrainingParameters.training_losses_numpy_file_path
                               + ".npy")
     plot_loss(training_losses, title=f"Training Losses:", x_label="Epoch Iteration", y_label="Loss",
-              save_directory=training_results_save_dir, save_title="training_loss.png", show=False)
+              save_directory=training_results_save_dir, save_title="training_loss.png",
+              show=PlottingParameters.plot_training_loss)
 
 
     # Testing Plotting:
@@ -59,7 +60,7 @@ def plot_results():
     y_test = np.load(testing_results_numpy_save_dir + TestingParameters.testing_targets_numpy_file_path + ".npy")
     plot_regression_outputs(test_output, y_test, title="Testing Output Comparison:", x_label="Data Index",
                             y_label="Housing Price in USD", save_directory=testing_results_save_dir,
-                            save_title="testing_output.png", show=False)
+                            save_title="testing_output.png", show=PlottingParameters.plot_testing_outputs)
 
 
 if __name__ == "__main__":

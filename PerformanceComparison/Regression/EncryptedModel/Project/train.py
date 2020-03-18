@@ -26,7 +26,7 @@ def train(x_train, y_train):
     y1 = tf.matmul(x, W1) + b1
 
     # Layer 1b: Sigmoid Activation
-    y1 = tf.math.sigmoid(y1)
+    y1 = tf.math.square(y1)
 
     # Layer 2a: Fully Connected
     l2_output_nodes = round(l1_output_nodes * complexity_scaling_factor)
@@ -35,7 +35,7 @@ def train(x_train, y_train):
     y2 = tf.matmul(y1, W2) + b2
 
     # Layer 2b: Sigmoid Activation
-    y2 = tf.math.sigmoid(y2)
+    y2 = tf.math.square(y2)
 
     # Layer 3a: Fully Connected
     W3 = tf.Variable(tf.truncated_normal([l2_output_nodes, output_dimension]))
@@ -64,7 +64,7 @@ def train(x_train, y_train):
                 batch_x = x_train[batch * TrainingParameters.batch_size: (1 + batch) * TrainingParameters.batch_size]
                 batch_y = y_train[batch * TrainingParameters.batch_size: (1 + batch) * TrainingParameters.batch_size]
                 # Instantiating the inputs and targets with the batch values:
-                output = np.array(sess.run([optimizer], feed_dict={x: batch_x, y_: batch_y}))
+                y_out, y2_out, optim_output = np.array(sess.run([y, y2, optimizer], feed_dict={x: batch_x, y_: batch_y}))
 
             training_output, training_loss = sess.run([y, cost], feed_dict={x: x_train, y_: y_train})
             training_loss = np.mean(training_loss)
