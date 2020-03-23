@@ -1,6 +1,6 @@
 import tensorflow as tf
 import numpy as np
-from mnist_models.microsoft_cryptonet_model.project.consts import *
+from PerformanceComparison.Classification.EncryptedModel.Project.consts import *
 import time
 
 if encrypted_flag:
@@ -30,7 +30,8 @@ def train(x_train, y_train, learning_rate, num_epochs, batch_size, checkpoint_fr
     y1 = tf.nn.conv2d(l1, filter=k1, strides=l1_strides, padding=l1_padding_type)
 
     # Layer 2: Square Activation
-    y2 = tf.square(y1)
+    l1_scaling = 0.01
+    y2 = l1_scaling * tf.square(y1)
 
     # Layer 3: Scaled Mean Pool
     l3_window_shape = [3, 3]
@@ -59,7 +60,8 @@ def train(x_train, y_train, learning_rate, num_epochs, batch_size, checkpoint_fr
     y6 = tf.matmul(y5, W6) + b6
 
     # Layer 7: Square Activation
-    y7 = tf.square(y6)
+    l7_scaling = 0.01
+    y7 = l7_scaling * tf.square(y6)
 
     # Layer 8: Fully Connected
     l8_output_nodes = 10

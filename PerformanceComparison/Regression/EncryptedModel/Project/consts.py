@@ -32,10 +32,10 @@ class EncryptionParameters:
 
 
 class TrainingParameters:
-    learning_rate = 0.001
+    learning_rate = 0.1
     num_epochs = 1500
     num_models = 100
-    batch_size = 128
+    batch_size = 512
     checkpoint_frequency = 100
     incomplete_checkpoint_file_location = checkpoint_dir + model_type + "_" + model_name + "_Epoch_"
     training_dataset_percentage = 100

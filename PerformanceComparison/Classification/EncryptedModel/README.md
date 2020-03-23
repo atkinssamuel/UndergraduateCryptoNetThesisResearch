@@ -30,11 +30,11 @@ This layer applies the sigmoid function to each of the 10 incoming values.
 ### Training Results
 The training loss curve is shown in Figure 1, below:
 
-![](results/unencrypted/training_loss.png)
+![](Results/unencrypted/training_loss.png)
 
 *Figure 1: Training loss for Microsoft's CryptoNet model*
 
-![](results/encrypted/training_accuracy.png)
+![](Results/encrypted/training_accuracy.png)
 
 *Figure 2: Training accuracy for Microsoft's CryptoNet model*
 

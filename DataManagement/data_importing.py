@@ -90,5 +90,5 @@ def import_boston_housing():
 
 
 if __name__ == "__main__":
-    import_boston_housing()
+    import_MNIST()
 

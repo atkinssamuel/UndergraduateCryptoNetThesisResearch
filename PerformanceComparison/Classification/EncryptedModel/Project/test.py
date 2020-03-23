@@ -2,7 +2,7 @@ import time
 import numpy as np
 import tensorflow as tf
 
-from mnist_models.microsoft_cryptonet_model.project.consts import checkpoint_dir
+from PerformanceComparison.Classification.EncryptedModel.Project.consts import checkpoint_dir
 
 
 def test(x_test, y_test, checkpoint_file):

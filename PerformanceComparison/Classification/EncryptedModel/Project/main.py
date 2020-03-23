@@ -1,7 +1,7 @@
-from data_loading.data_loading import load_MNIST
-from mnist_models.microsoft_cryptonet_model.project.train import train
-from mnist_models.microsoft_cryptonet_model.project.test import test
-from mnist_models.microsoft_cryptonet_model.project.consts import *
+from DataManagement.data_loading import load_MNIST
+from PerformanceComparison.Classification.EncryptedModel.Project.train import train
+from PerformanceComparison.Classification.EncryptedModel.Project.test import test
+from PerformanceComparison.Classification.EncryptedModel.Project.consts import *
 
 if __name__ == "__main__":
     (x_train, y_train), (x_test, y_test) = load_MNIST(

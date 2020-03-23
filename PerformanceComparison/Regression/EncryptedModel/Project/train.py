@@ -13,7 +13,7 @@ def train(x_train, y_train):
     # Base Params:
     input_dimension = x_train.shape[1]
     output_dimension = y_train.shape[1]
-    complexity_scaling_factor = 3.5
+    complexity_scaling_factor = 1.5
 
     # Defining Placeholders:
     x = tf.placeholder(tf.float32, [None, input_dimension])
@@ -25,8 +25,9 @@ def train(x_train, y_train):
     b1 = tf.Variable(tf.zeros([l1_output_nodes]))
     y1 = tf.matmul(x, W1) + b1
 
-    # Layer 1b: Sigmoid Activation
-    y1 = tf.math.square(y1)
+    # Layer 1b: Squared Activation
+    l1_scaling = 0.1
+    y1 = l1_scaling * tf.math.square(y1)
 
     # Layer 2a: Fully Connected
     l2_output_nodes = round(l1_output_nodes * complexity_scaling_factor)
@@ -34,8 +35,9 @@ def train(x_train, y_train):
     b2 = tf.Variable(tf.zeros([l2_output_nodes]))
     y2 = tf.matmul(y1, W2) + b2
 
-    # Layer 2b: Sigmoid Activation
-    y2 = tf.math.square(y2)
+    # Layer 2b: Squared Activation
+    l2_scaling = 0.0001
+    y2 = l2_scaling * tf.math.square(y2)
 
     # Layer 3a: Fully Connected
     W3 = tf.Variable(tf.truncated_normal([l2_output_nodes, output_dimension]))

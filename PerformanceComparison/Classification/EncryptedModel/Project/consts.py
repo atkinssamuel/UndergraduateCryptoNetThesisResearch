@@ -1,11 +1,11 @@
-from encryption.encryption_config import encryption_config
+from GlobalHelpers.encryption_config import encryption_config
 
-checkpoint_dir = "weights/"
-results_dir = "results/"
-encrypted_results_dir = "results/encrypted/"
-unencrypted_results_dir = "results/unencrypted/"
-encrypted_numpy_dir = "results/encrypted_numpy/"
-unencrypted_numpy_dir = "results/unencrypted_numpy/"
+checkpoint_dir = "Weights/"
+results_dir = "Results/"
+encrypted_results_dir = "Results/encrypted/"
+unencrypted_results_dir = "Results/unencrypted/"
+encrypted_numpy_dir = "Results/encrypted_numpy/"
+unencrypted_numpy_dir = "Results/unencrypted_numpy/"
 train_flag = 1
 encrypted_flag = 0
 
