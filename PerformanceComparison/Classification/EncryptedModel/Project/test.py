@@ -2,7 +2,7 @@ import time
 import numpy as np
 import tensorflow as tf
 
-from PerformanceComparison.Classification.EncryptedModel.Project.consts import checkpoint_dir
+from PerformanceComparison.Classification.EncryptedModel.Project.consts import *
 
 
 def test(x_test, y_test, checkpoint_file):
@@ -67,7 +67,7 @@ def test(x_test, y_test, checkpoint_file):
 
     # For weight saving:
     saver = tf.train.Saver()
-    checkpoint = checkpoint_dir + checkpoint_file
+    checkpoint = TestingParameters.checkpoint_file_location
 
     start_time = time.time()
 
@@ -79,6 +79,6 @@ def test(x_test, y_test, checkpoint_file):
         targets = np.argmax(y_test, axis=1)
         accuracy = np.sum(np.equal(predictions, targets))/test_output.shape[0] * 100
 
-        print(f"Testing Accuracy = {accuracy}%")
+        print(f"Testing Accuracy = {round(accuracy, 3)}%")
     print(f"Testing Time Elapsed = {round(time.time() - start_time, 3)}s")
     return

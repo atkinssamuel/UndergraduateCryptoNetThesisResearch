@@ -111,14 +111,11 @@ def train(x_train, y_train, learning_rate, num_epochs, batch_size, checkpoint_fr
                   f"Time Elapsed = {round(time.time() - start_time, 3)}s")
 
             if epoch_iteration % checkpoint_frequency == 0:
-                checkpoint = checkpoint_dir + f"microsoft_mnist_{epoch_iteration}.ckpt"
+                checkpoint = f"{TrainingParameters.incomplete_checkpoint_file_location}{epoch_iteration}.ckpt"
                 saver.save(sess, checkpoint)
         sess.close()
-    if encrypted_flag:
-        np.save(encrypted_numpy_dir + 'encrypted_training_losses', training_losses)
-        np.save(encrypted_numpy_dir + 'encrypted_training_accuracies', training_accuracies)
-    else:
-        np.save(unencrypted_numpy_dir + 'unencrypted_training_losses', training_losses)
-        np.save(unencrypted_numpy_dir + 'unencrypted_training_accuracies', training_accuracies)
+    np.save(training_results_numpy_dir + 'training_losses', training_losses)
+    np.save(training_results_numpy_dir + 'training_accuracies', training_accuracies)
+
     print(f"Total Training Time Elapsed = {round(time.time() - start_time, 3)}s")
     return
