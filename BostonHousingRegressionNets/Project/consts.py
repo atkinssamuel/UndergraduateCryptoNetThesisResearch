@@ -13,7 +13,7 @@ class Models:
 model = Models.WorkingModel
 train_flag = 0
 encrypted_flag = not train_flag
-checkpoint_file_number = 1480
+checkpoint_file_number = 1440
 
 base_dir = "BostonHousingRegressionNets/"
 
@@ -21,7 +21,7 @@ if model == Models.WorkingModel:
     model_dir = "Models/WorkingModel/"
     model_name = "WorkingModel"
 elif model == Models.WorkingModelPlaintext:
-    model_dir = "Models/WorkingModel/"
+    model_dir = "Models/WorkingModelPlaintext/"
     model_name = "WorkingModelPlaintext"
 elif model == Models.ThresholdModel:
     model_dir = "Models/ThresholdModel/"
@@ -55,13 +55,13 @@ class EncryptionParameters:
     if encrypted_flag:
         print("Model is encrypted. Using corresponding encryption parameters.")
         backend = BackendOptions.SEAL
-        encryption_parameters = config_options_dir + "base_params" + ".json"
+        encryption_parameters = config_options_dir + "base_params.json"
     else:
         print("Model is unencrypted.")
-        backend = BackendOptions.XLA
+        backend = BackendOptions.CPU
         encryption_parameters = ""
+    print("encryption_parameters =", encryption_parameters)
     config = encryption_config(backend=backend, encryption_parameters=encryption_parameters)
-
 
 class TrainingParameters:
     learning_rate = 0.001

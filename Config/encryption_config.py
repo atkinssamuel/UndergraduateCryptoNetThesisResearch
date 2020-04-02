@@ -11,8 +11,7 @@ def encryption_config(backend="HE_SEAL", encryption_parameters=""):
     server_config.name = "ngraph-optimizer"
     server_config.parameter_map["ngraph_backend"].s = backend.encode()
     server_config.parameter_map["device_id"].s = b''
-    server_config.parameter_map[
-        "encryption_parameters"].s = encryption_parameters.encode()
+    server_config.parameter_map["encryption_parameters"].s = encryption_parameters.encode()
     server_config.parameter_map['enable_client'].s = (str(False)).encode()
     config = tf.compat.v1.ConfigProto()
     config.MergeFrom(

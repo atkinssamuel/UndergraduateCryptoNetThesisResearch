@@ -1,7 +1,7 @@
 from BostonHousingRegressionNets.Project.consts import  *
 from BostonHousingRegressionNets.Models.WorkingModel.working_model_train \
     import working_model_train
-from BostonHousingRegressionNets.Models.WorkingModel.working_model_plaintext_train\
+from BostonHousingRegressionNets.Models.WorkingModelPlaintext.working_model_plaintext_train \
     import working_model_plaintext_train
 from BostonHousingRegressionNets.Models.ThresholdModel.threshold_model_train \
     import threshold_model_train
@@ -9,7 +9,7 @@ from BostonHousingRegressionNets.Models.ExplodedModel.exploded_model_train \
     import exploded_model_train
 from BostonHousingRegressionNets.Models.WorkingModel.working_model_test import \
     working_model_test
-from BostonHousingRegressionNets.Models.WorkingModel.working_model_plaintext_test \
+from BostonHousingRegressionNets.Models.WorkingModelPlaintext.working_model_plaintext_test \
     import working_model_plaintext_test
 from BostonHousingRegressionNets.Models.ThresholdModel.threshold_model_test import \
     threshold_model_test
@@ -40,6 +40,6 @@ if __name__ == "__main__":
         elif model == Models.WorkingModelPlaintext:
             working_model_plaintext_test(x_test, y_test)
         elif model == Models.ThresholdModel:
-            threshold_model_test(x_train, y_train)
+            threshold_model_test(x_test, y_test)
         elif model == Models.ExplodedModel:
-            exploded_model_test(x_train, y_train)
+            exploded_model_test(x_test, y_test)

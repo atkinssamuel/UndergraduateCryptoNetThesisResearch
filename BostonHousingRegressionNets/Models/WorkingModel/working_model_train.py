@@ -4,7 +4,7 @@ import numpy as np
 from BostonHousingRegressionNets.Project.consts import *
 
 if encrypted_flag:
-    pass
+    import ngraph_bridge
 
 
 def working_model_train(x_train, y_train):
