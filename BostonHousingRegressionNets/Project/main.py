@@ -1,15 +1,15 @@
-from BostonHousingRegressionNets.ExplodingGradientIllustration.Project.consts import  *
-from BostonHousingRegressionNets.ExplodingGradientIllustration.Models.WorkingModel.working_model_train \
+from BostonHousingRegressionNets.Project.consts import  *
+from BostonHousingRegressionNets.Models.WorkingModel.working_model_train \
     import working_model_train
-from BostonHousingRegressionNets.ExplodingGradientIllustration.Models.ThresholdModel.threshold_model_train \
+from BostonHousingRegressionNets.Models.ThresholdModel.threshold_model_train \
     import threshold_model_train
-from BostonHousingRegressionNets.ExplodingGradientIllustration.Models.ExplodedModel.exploded_model_train \
+from BostonHousingRegressionNets.Models.ExplodedModel.exploded_model_train \
     import exploded_model_train
-from BostonHousingRegressionNets.ExplodingGradientIllustration.Models.WorkingModel.working_model_test import \
+from BostonHousingRegressionNets.Models.WorkingModel.working_model_test import \
     working_model_test
-from BostonHousingRegressionNets.ExplodingGradientIllustration.Models.ThresholdModel.threshold_model_test import \
+from BostonHousingRegressionNets.Models.ThresholdModel.threshold_model_test import \
     threshold_model_test
-from BostonHousingRegressionNets.ExplodingGradientIllustration.Models.ExplodedModel.exploded_model_test import \
+from BostonHousingRegressionNets.Models.ExplodedModel.exploded_model_test import \
     exploded_model_test
 
 

@@ -1,9 +1,9 @@
 import numpy as np
 import tensorflow as tf
 
-from BostonHousingRegressionNets.ExplodingGradientIllustration.Project.consts import *
+from BostonHousingRegressionNets.Project.consts import *
 
-def exploded_model_test(x_test, y_test):
+def working_model_test(x_test, y_test):
     # Parameters:
     input_dimension = x_test.shape[1]
     output_dimension = y_test.shape[1]
@@ -36,6 +36,7 @@ def exploded_model_test(x_test, y_test):
     saver = tf.train.Saver()
     checkpoint = TestingParameters.checkpoint_file_location
 
+    start_time = time.time()
 
     with tf.Session(config=EncryptionParameters.config) as sess:
         saver.restore(sess, checkpoint)

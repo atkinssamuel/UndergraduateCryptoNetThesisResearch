@@ -1,14 +1,13 @@
 import tensorflow as tf
 import numpy as np
-import time
 
-from BostonHousingRegressionNets.ExplodingGradientIllustration.Project.consts import *
+from BostonHousingRegressionNets.Project.consts import *
 
 if encrypted_flag:
-    import ngraph_bridge
+    pass
 
 
-def working_model_train(x_train, y_train):
+def threshold_model_train(x_train, y_train):
     # Parameters:
     # Base Params:
     input_dimension = x_train.shape[1]

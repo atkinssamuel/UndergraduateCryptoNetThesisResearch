@@ -1,10 +1,9 @@
-import time
 import numpy as np
 import tensorflow as tf
 
-from BostonHousingRegressionNets.ExplodingGradientIllustration.Project.consts import *
+from BostonHousingRegressionNets.Project.consts import *
 
-def working_model_test(x_test, y_test):
+def threshold_model_test(x_test, y_test):
     # Parameters:
     input_dimension = x_test.shape[1]
     output_dimension = y_test.shape[1]

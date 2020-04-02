@@ -1,11 +1,10 @@
 import tensorflow as tf
 import numpy as np
-import time
 
-from BostonHousingRegressionNets.ExplodingGradientIllustration.Project.consts import *
+from BostonHousingRegressionNets.Project.consts import *
 
 if encrypted_flag:
-    import ngraph_bridge
+    pass
 
 
 def exploded_model_train(x_train, y_train):

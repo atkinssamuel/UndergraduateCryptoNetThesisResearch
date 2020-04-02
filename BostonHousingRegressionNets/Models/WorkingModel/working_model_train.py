@@ -1,14 +1,13 @@
 import tensorflow as tf
 import numpy as np
-import time
 
-from BostonHousingRegressionNets.ExplodingGradientIllustration.Project.consts import *
+from BostonHousingRegressionNets.Project.consts import *
 
 if encrypted_flag:
-    import ngraph_bridge
+    pass
 
 
-def threshold_model_train(x_train, y_train):
+def working_model_train(x_train, y_train):
     # Parameters:
     # Base Params:
     input_dimension = x_train.shape[1]
@@ -25,7 +24,7 @@ def threshold_model_train(x_train, y_train):
     b1 = tf.Variable(tf.zeros([hidden_layer_1]))
     y1 = tf.math.square(tf.matmul(x, W1) + b1)
 
-    # layer 2 variables:
+    # Layer 2 variables:
     W2 = tf.Variable(tf.truncated_normal([hidden_layer_1, hidden_layer_2], stddev=0.15))
     b2 = tf.Variable(tf.zeros([hidden_layer_2]))
     y = tf.matmul(y1, W2) + b2
