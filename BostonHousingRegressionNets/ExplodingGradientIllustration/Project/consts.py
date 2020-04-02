@@ -10,7 +10,7 @@ class Models:
 
 
 model = Models.ExplodedModel
-train_flag = 0
+train_flag = 1
 encrypted_flag = not train_flag
 
 base_dir = "BostonHousingRegressionNets/ExplodingGradientIllustration/"
