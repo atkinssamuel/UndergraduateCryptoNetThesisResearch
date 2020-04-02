@@ -1,12 +1,16 @@
 from BostonHousingRegressionNets.Project.consts import  *
 from BostonHousingRegressionNets.Models.WorkingModel.working_model_train \
     import working_model_train
+from BostonHousingRegressionNets.Models.WorkingModel.working_model_plaintext_train\
+    import working_model_plaintext_train
 from BostonHousingRegressionNets.Models.ThresholdModel.threshold_model_train \
     import threshold_model_train
 from BostonHousingRegressionNets.Models.ExplodedModel.exploded_model_train \
     import exploded_model_train
 from BostonHousingRegressionNets.Models.WorkingModel.working_model_test import \
     working_model_test
+from BostonHousingRegressionNets.Models.WorkingModel.working_model_plaintext_test \
+    import working_model_plaintext_test
 from BostonHousingRegressionNets.Models.ThresholdModel.threshold_model_test import \
     threshold_model_test
 from BostonHousingRegressionNets.Models.ExplodedModel.exploded_model_test import \
@@ -24,6 +28,8 @@ if __name__ == "__main__":
     if train_flag:
         if model == Models.WorkingModel:
             working_model_train(x_train, y_train)
+        elif model == Models.WorkingModelPlaintext:
+            working_model_plaintext_train(x_train, y_train)
         elif model == Models.ThresholdModel:
             threshold_model_train(x_train, y_train)
         elif model == Models.ExplodedModel:
@@ -31,6 +37,8 @@ if __name__ == "__main__":
     else:
         if model == Models.WorkingModel:
             working_model_test(x_test, y_test)
+        elif model == Models.WorkingModelPlaintext:
+            working_model_plaintext_test(x_test, y_test)
         elif model == Models.ThresholdModel:
             threshold_model_test(x_train, y_train)
         elif model == Models.ExplodedModel:

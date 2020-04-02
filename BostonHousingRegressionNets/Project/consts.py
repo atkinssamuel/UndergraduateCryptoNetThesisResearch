@@ -5,22 +5,29 @@ start_time = time.time()
 
 class Models:
     WorkingModel = 0
-    ThresholdModel = 1
-    ExplodedModel = 2
+    WorkingModelPlaintext = 1
+    ThresholdModel = 2
+    ExplodedModel = 3
 
 
-model = Models.WorkingModel
-train_flag = 0
+model = Models.WorkingModelPlaintext
+train_flag = 1
 encrypted_flag = not train_flag
 
-base_dir = "BostonHousingRegressionNets/ExplodingGradientIllustration/"
+base_dir = "BostonHousingRegressionNets/"
 
 if model == Models.WorkingModel:
     model_dir = "Models/WorkingModel/"
+    model_name = "WorkingModel"
+elif model == Models.WorkingModelPlaintext:
+    model_dir = "Models/WorkingModel/"
+    model_name = "WorkingModelPlaintext"
 elif model == Models.ThresholdModel:
     model_dir = "Models/ThresholdModel/"
+    model_name = "ThresholdModel"
 elif model == Models.ExplodedModel:
     model_dir = "Models/ExplodedModel/"
+    model_name = "ExplodedModel"
 else:
     print("Invalid model enum.")
     exit(1)
@@ -34,7 +41,7 @@ testing_results_save_dir = base_dir + model_dir + "Results/Testing/"
 config_base_options_dir = "Config/BaseOptions/"
 config_options_dir = "Config/Options/"
 model_type = "BostonHousingRegression"
-model_name = "ExplodingGradient"
+
 
 
 class BackendOptions:

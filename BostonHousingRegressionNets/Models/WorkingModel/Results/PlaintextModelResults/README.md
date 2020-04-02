@@ -1,4 +1,4 @@
-# Results for the Most Simple Working Model
+# Results for the Plaintext Working Model
 ## Training Loss, Testing Loss, and Time to Predict for 10 Trials:
 |*Trial Number*| Training Loss  | Epoch | Testing Loss | Encrypted Testing Time |
 |:-------------:|:----------------:|:-------:|:--------------:|:------------------------:|
@@ -13,19 +13,4 @@
 | 9            | 43753.652 | 1490 | 19542.424 | 0.113s | 
 | 10           | 10489.166 | 1450 | 4264.462 | 0.113s | 
 
-### Strong Predictions:
-![](../Testing/strong_testing_output_trial_6.png)
 
-*Figure 1: Testing output produced by trial 6*
-
-
-![](../Testing/strong_testing_output_trial_10.png)
-
-*Figure 2: Testing output produced by trial 10*
-
-### Anomaly:
-![](../Testing/trial_5_output.png)
-
-*Figure 3: Strange anomaly produced by trial 5*
-
-The above anomaly also appeared in trial 9.
