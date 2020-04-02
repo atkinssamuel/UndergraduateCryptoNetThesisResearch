@@ -13,7 +13,7 @@ def exploded_model_train(x_train, y_train):
     input_dimension = x_train.shape[1]
     output_dimension = y_train.shape[1]
 
-    hidden_layer_1 = 73
+    hidden_layer_1 = 8
     hidden_layer_2 = 1
 
     # Placeholder for batch of inputs:
@@ -27,7 +27,7 @@ def exploded_model_train(x_train, y_train):
     # Layer 2 variables:
     W2 = tf.Variable(tf.truncated_normal([hidden_layer_1, hidden_layer_2], stddev=0.15))
     b2 = tf.Variable(tf.zeros([hidden_layer_2]))
-    y = tf.math.square(tf.matmul(y1, W2) + b2)
+    y = tf.matmul(y1, W2) + b2
 
     # Placeholder for batch of targets:
     y_ = tf.placeholder(tf.float32, [None, output_dimension])
@@ -65,7 +65,8 @@ def exploded_model_train(x_train, y_train):
                 np.save(training_results_numpy_save_dir + f"{TrainingParameters.training_targets_numpy_file_path}{epoch_iteration}", y_train)
                 checkpoint = f"{TrainingParameters.incomplete_checkpoint_file_location}{epoch_iteration}.ckpt"
                 saver.save(sess, checkpoint)
-            np.savetxt(training_results_numpy_save_dir + f"training_output_epoch_{epoch_iteration}.csv", training_output, delimiter=',')
+            with open(training_results_numpy_save_dir + "../InitialLossVsLayerWidth/" + f'training_loss_{hidden_layer_1}.csv', 'a') as fd:
+                fd.write(f"{training_loss}, ")
         sess.close()
     training_losses = np.array(training_losses)
     np.savetxt(training_results_numpy_save_dir + f"training_losses.csv", training_losses, delimiter=',')

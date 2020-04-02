@@ -65,7 +65,7 @@ class EncryptionParameters:
 
 class TrainingParameters:
     learning_rate = 0.001
-    num_epochs = 2
+    num_epochs = 1
     num_models = 100
     batch_size = 64
     checkpoint_frequency = 10
