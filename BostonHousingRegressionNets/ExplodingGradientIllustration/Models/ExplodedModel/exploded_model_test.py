@@ -1,4 +1,3 @@
-import time
 import numpy as np
 import tensorflow as tf
 
@@ -37,7 +36,6 @@ def exploded_model_test(x_test, y_test):
     saver = tf.train.Saver()
     checkpoint = TestingParameters.checkpoint_file_location
 
-    start_time = time.time()
 
     with tf.Session(config=EncryptionParameters.config) as sess:
         saver.restore(sess, checkpoint)

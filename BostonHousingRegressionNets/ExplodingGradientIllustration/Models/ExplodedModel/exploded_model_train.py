@@ -25,6 +25,16 @@ def exploded_model_train(x_train, y_train):
     b1 = tf.Variable(tf.zeros([hidden_layer_1]))
     y1 = tf.math.square(tf.matmul(x, W1) + b1)
 
+    # Layer 1 variables:
+    W1 = tf.Variable(tf.truncated_normal([input_dimension, hidden_layer_1], stddev=0.15))
+    b1 = tf.Variable(tf.zeros([hidden_layer_1]))
+    y1 = tf.math.square(tf.matmul(x, W1) + b1)
+
+    # Layer 1 variables:
+    W1 = tf.Variable(tf.truncated_normal([input_dimension, hidden_layer_1], stddev=0.15))
+    b1 = tf.Variable(tf.zeros([hidden_layer_1]))
+    y1 = tf.math.square(tf.matmul(x, W1) + b1)
+
     # layer 2 variables:
     W2 = tf.Variable(tf.truncated_normal([hidden_layer_1, hidden_layer_2], stddev=0.15))
     b2 = tf.Variable(tf.zeros([hidden_layer_2]))

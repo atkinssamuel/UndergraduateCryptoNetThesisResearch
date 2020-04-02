@@ -1,4 +1,6 @@
 from GlobalHelpers.encryption_config import encryption_config
+import time
+start_time = time.time()
 
 
 class Models:
@@ -7,9 +9,9 @@ class Models:
     ExplodedModel = 2
 
 
-model = Models.WorkingModel
+model = Models.ExplodedModel
 train_flag = 0
-encrypted_flag = 0
+encrypted_flag = not train_flag
 
 base_dir = "BostonHousingRegressionNets/ExplodingGradientIllustration/"
 
@@ -63,7 +65,7 @@ class TrainingParameters:
 
 
 class TestingParameters:
-    checkpoint_file_number = "1430"
+    checkpoint_file_number = "1450"
     checkpoint_file_location = TrainingParameters.incomplete_checkpoint_file_location + \
                                checkpoint_file_number + ".ckpt"
     testing_dataset_percentage = 100
