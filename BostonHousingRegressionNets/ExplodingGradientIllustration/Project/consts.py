@@ -1,4 +1,4 @@
-from GlobalHelpers.encryption_config import encryption_config
+from Config.encryption_config import encryption_config
 import time
 start_time = time.time()
 
@@ -9,8 +9,8 @@ class Models:
     ExplodedModel = 2
 
 
-model = Models.ExplodedModel
-train_flag = 1
+model = Models.WorkingModel
+train_flag = 0
 encrypted_flag = not train_flag
 
 base_dir = "BostonHousingRegressionNets/ExplodingGradientIllustration/"
@@ -31,6 +31,8 @@ training_results_save_dir = base_dir + model_dir + "Results/Training/"
 training_results_numpy_save_dir = base_dir + model_dir + "Results/TrainingNumpy/"
 testing_results_numpy_save_dir = base_dir + model_dir + "Results/TestingNumpy/"
 testing_results_save_dir = base_dir + model_dir + "Results/Testing/"
+config_base_options_dir = "Config/BaseOptions/"
+config_options_dir = "Config/Options/"
 model_type = "BostonHousingRegression"
 model_name = "ExplodingGradient"
 
@@ -44,7 +46,7 @@ class BackendOptions:
 class EncryptionParameters:
     if encrypted_flag:
         backend = BackendOptions.SEAL
-        encryption_parameters = ""
+        encryption_parameters = config_options_dir + "base_params" + ".json"
     else:
         backend = BackendOptions.XLA
         encryption_parameters = ""
