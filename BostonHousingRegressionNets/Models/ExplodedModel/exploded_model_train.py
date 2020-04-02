@@ -13,7 +13,7 @@ def exploded_model_train(x_train, y_train):
     input_dimension = x_train.shape[1]
     output_dimension = y_train.shape[1]
 
-    hidden_layer_1 = 64
+    hidden_layer_1 = 73
     hidden_layer_2 = 1
 
     # Placeholder for batch of inputs:
@@ -27,22 +27,7 @@ def exploded_model_train(x_train, y_train):
     # Layer 2 variables:
     W2 = tf.Variable(tf.truncated_normal([hidden_layer_1, hidden_layer_2], stddev=0.15))
     b2 = tf.Variable(tf.zeros([hidden_layer_2]))
-    y2 = tf.math.square(tf.matmul(y1, W2) + b2)
-
-    # Layer 1 variables:
-    W1 = tf.Variable(tf.truncated_normal([input_dimension, hidden_layer_1], stddev=0.15))
-    b1 = tf.Variable(tf.zeros([hidden_layer_1]))
-    y1 = tf.math.square(tf.matmul(x, W1) + b1)
-
-    # Layer 1 variables:
-    W1 = tf.Variable(tf.truncated_normal([input_dimension, hidden_layer_1], stddev=0.15))
-    b1 = tf.Variable(tf.zeros([hidden_layer_1]))
-    y1 = tf.math.square(tf.matmul(x, W1) + b1)
-
-    # layer 2 variables:
-    W2 = tf.Variable(tf.truncated_normal([hidden_layer_1, hidden_layer_2], stddev=0.15))
-    b2 = tf.Variable(tf.zeros([hidden_layer_2]))
-    y = tf.matmul(y1, W2) + b2
+    y = tf.math.square(tf.matmul(y1, W2) + b2)
 
     # Placeholder for batch of targets:
     y_ = tf.placeholder(tf.float32, [None, output_dimension])
@@ -68,7 +53,6 @@ def exploded_model_train(x_train, y_train):
                 batch_y = y_train[batch * TrainingParameters.batch_size: (1 + batch) * TrainingParameters.batch_size]
                 # Instantiating the inputs and targets with the batch values:
                 optim_out = np.array(sess.run([optimizer], feed_dict={x: batch_x, y_: batch_y}))
-
             training_output, training_loss = sess.run([y, cost], feed_dict={x: x_train, y_: y_train})
             training_loss = np.mean(training_loss)
             training_losses.append(training_loss)
@@ -81,8 +65,10 @@ def exploded_model_train(x_train, y_train):
                 np.save(training_results_numpy_save_dir + f"{TrainingParameters.training_targets_numpy_file_path}{epoch_iteration}", y_train)
                 checkpoint = f"{TrainingParameters.incomplete_checkpoint_file_location}{epoch_iteration}.ckpt"
                 saver.save(sess, checkpoint)
+            np.savetxt(training_results_numpy_save_dir + f"training_output_epoch_{epoch_iteration}.csv", training_output, delimiter=',')
         sess.close()
     training_losses = np.array(training_losses)
+    np.savetxt(training_results_numpy_save_dir + f"training_losses.csv", training_losses, delimiter=',')
     np.save(training_results_numpy_save_dir + f"training_losses", training_losses)
     max_value = np.max(training_losses)
     for i in range(np.size(training_losses)):

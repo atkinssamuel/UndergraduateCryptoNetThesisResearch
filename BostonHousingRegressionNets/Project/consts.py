@@ -10,10 +10,10 @@ class Models:
     ExplodedModel = 3
 
 
-model = Models.WorkingModelPlaintext
-train_flag = 0
-encrypted_flag = 0
-checkpoint_file_number = 1490
+model = Models.ExplodedModel
+train_flag = 1
+encrypted_flag = not train_flag
+checkpoint_file_number = 510
 
 base_dir = "BostonHousingRegressionNets/"
 
@@ -65,7 +65,7 @@ class EncryptionParameters:
 
 class TrainingParameters:
     learning_rate = 0.001
-    num_epochs = 1500
+    num_epochs = 2
     num_models = 100
     batch_size = 64
     checkpoint_frequency = 10
