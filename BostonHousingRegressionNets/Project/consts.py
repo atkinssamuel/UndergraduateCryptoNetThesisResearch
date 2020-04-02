@@ -10,9 +10,10 @@ class Models:
     ExplodedModel = 3
 
 
-model = Models.WorkingModelPlaintext
-train_flag = 1
+model = Models.WorkingModel
+train_flag = 0
 encrypted_flag = not train_flag
+checkpoint_file_number = 1480
 
 base_dir = "BostonHousingRegressionNets/"
 
@@ -52,9 +53,11 @@ class BackendOptions:
 
 class EncryptionParameters:
     if encrypted_flag:
+        print("Model is encrypted. Using corresponding encryption parameters.")
         backend = BackendOptions.SEAL
         encryption_parameters = config_options_dir + "base_params" + ".json"
     else:
+        print("Model is unencrypted.")
         backend = BackendOptions.XLA
         encryption_parameters = ""
     config = encryption_config(backend=backend, encryption_parameters=encryption_parameters)
@@ -74,7 +77,7 @@ class TrainingParameters:
 
 
 class TestingParameters:
-    checkpoint_file_number = "1450"
+    checkpoint_file_number = f"{checkpoint_file_number}"
     checkpoint_file_location = TrainingParameters.incomplete_checkpoint_file_location + \
                                checkpoint_file_number + ".ckpt"
     testing_dataset_percentage = 100
