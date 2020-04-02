@@ -10,10 +10,10 @@ class Models:
     ExplodedModel = 3
 
 
-model = Models.WorkingModel
+model = Models.WorkingModelPlaintext
 train_flag = 0
-encrypted_flag = not train_flag
-checkpoint_file_number = 1440
+encrypted_flag = 0
+checkpoint_file_number = 1490
 
 base_dir = "BostonHousingRegressionNets/"
 
