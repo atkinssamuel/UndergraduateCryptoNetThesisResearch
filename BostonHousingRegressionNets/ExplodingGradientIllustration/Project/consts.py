@@ -1,18 +1,36 @@
 from GlobalHelpers.encryption_config import encryption_config
 
-base_dir = "BostonHousingRegressionNets/ExplodingGradientIllustration/"
-checkpoint_dir = base_dir + "Weights/"
-results_dir = base_dir + "Results/"
-training_results_save_dir = base_dir + "Results/Training/"
-training_results_numpy_save_dir = base_dir + "Results/TrainingNumpy/"
-testing_results_numpy_save_dir = base_dir + "Results/TestingNumpy/"
-testing_results_save_dir = base_dir + "Results/Testing/"
-model_type = "Regression"
-model_name = "EncryptedModel"
 
-train_flag = 1
+class Models:
+    WorkingModel = 0
+    ThresholdModel = 1
+    ExplodedModel = 2
 
+
+model = Models.WorkingModel
+train_flag = 0
 encrypted_flag = 0
+
+base_dir = "BostonHousingRegressionNets/ExplodingGradientIllustration/"
+
+if model == Models.WorkingModel:
+    model_dir = "Models/WorkingModel/"
+elif model == Models.ThresholdModel:
+    model_dir = "Models/ThresholdModel/"
+elif model == Models.ExplodedModel:
+    model_dir = "Models/ExplodedModel/"
+else:
+    print("Invalid model enum.")
+    exit(1)
+
+checkpoint_dir = base_dir + model_dir + "Weights/"
+results_dir = base_dir + model_dir + "Results/"
+training_results_save_dir = base_dir + model_dir + "Results/Training/"
+training_results_numpy_save_dir = base_dir + model_dir + "Results/TrainingNumpy/"
+testing_results_numpy_save_dir = base_dir + model_dir + "Results/TestingNumpy/"
+testing_results_save_dir = base_dir + model_dir + "Results/Testing/"
+model_type = "BostonHousingRegression"
+model_name = "ExplodingGradient"
 
 
 class BackendOptions:
@@ -36,7 +54,7 @@ class TrainingParameters:
     num_epochs = 1500
     num_models = 100
     batch_size = 64
-    checkpoint_frequency = 100
+    checkpoint_frequency = 10
     incomplete_checkpoint_file_location = checkpoint_dir + model_type + "_" + model_name + "_Epoch_"
     training_dataset_percentage = 100
     training_output_numpy_file_path = "training_output_epoch_"
@@ -45,7 +63,7 @@ class TrainingParameters:
 
 
 class TestingParameters:
-    checkpoint_file_number = "1472"
+    checkpoint_file_number = "1430"
     checkpoint_file_location = TrainingParameters.incomplete_checkpoint_file_location + \
                                checkpoint_file_number + ".ckpt"
     testing_dataset_percentage = 100

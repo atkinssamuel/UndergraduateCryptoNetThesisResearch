@@ -1,6 +1,18 @@
 from BostonHousingRegressionNets.ExplodingGradientIllustration.Project.consts import  *
-from BostonHousingRegressionNets.ExplodingGradientIllustration.Models.train import train
-from BostonHousingRegressionNets.ExplodingGradientIllustration.Models.test import test
+from BostonHousingRegressionNets.ExplodingGradientIllustration.Models.WorkingModel.working_model_train \
+    import working_model_train
+from BostonHousingRegressionNets.ExplodingGradientIllustration.Models.ThresholdModel.threshold_model_train \
+    import threshold_model_train
+from BostonHousingRegressionNets.ExplodingGradientIllustration.Models.ExplodedModel.exploded_model_train \
+    import exploded_model_train
+from BostonHousingRegressionNets.ExplodingGradientIllustration.Models.WorkingModel.working_model_test import \
+    working_model_test
+from BostonHousingRegressionNets.ExplodingGradientIllustration.Models.ThresholdModel.threshold_model_test import \
+    threshold_model_test
+from BostonHousingRegressionNets.ExplodingGradientIllustration.Models.ExplodedModel.exploded_model_test import \
+    exploded_model_test
+
+
 from DataManagement.data_loading import load_boston_housing
 
 
@@ -10,6 +22,16 @@ if __name__ == "__main__":
         test_percentage=TestingParameters.testing_dataset_percentage)
 
     if train_flag:
-        train(x_train, y_train)
+        if model == Models.WorkingModel:
+            working_model_train(x_train, y_train)
+        elif model == Models.ThresholdModel:
+            threshold_model_train(x_train, y_train)
+        elif model == Models.ExplodedModel:
+            exploded_model_train(x_train, y_train)
     else:
-        test(x_test, y_test)
+        if model == Models.WorkingModel:
+            working_model_test(x_test, y_test)
+        elif model == Models.ThresholdModel:
+            threshold_model_test(x_train, y_train)
+        elif model == Models.ExplodedModel:
+            exploded_model_test(x_train, y_train)
