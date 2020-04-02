@@ -1,4 +1,27 @@
 # Results for the Plaintext Working Model
+## Setup
+### Model Details:
+#### Hyper-parameters:
+Learning Rate = 0.001  
+Batch Size = 64  
+#### Structure:
+One hidden layer with 64 nodes followed by sigmoid activation.
+```python
+hidden_layer_1 = 64
+hidden_layer_2 = 1
+
+# Layer 1 variables:
+W1 = tf.Variable(tf.truncated_normal([input_dimension, hidden_layer_1], stddev=0.15))
+b1 = tf.Variable(tf.zeros([hidden_layer_1]))
+y1 = tf.math.sigmoid(tf.matmul(x, W1) + b1)
+
+# Layer 2 variables:
+W2 = tf.Variable(tf.truncated_normal([hidden_layer_1, hidden_layer_2], stddev=0.15))
+b2 = tf.Variable(tf.zeros([hidden_layer_2]))
+y = tf.matmul(y1, W2) + b2
+```
+
+
 ## Training Loss, Testing Loss, and Time to Predict for 10 Trials:
 |*Trial Number*| Training Loss  | Epoch | Testing Loss | Encrypted Testing Time |
 |:-------------:|:----------------:|:-------:|:--------------:|:------------------------:|
