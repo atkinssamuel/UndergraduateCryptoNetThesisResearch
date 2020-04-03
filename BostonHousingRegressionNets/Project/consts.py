@@ -7,9 +7,17 @@ class Models:
     WorkingModel = 0
     WorkingModelPlaintext = 1
     LayerWidthInvestigation = 2
+    StructureOneLayerSigmoid = 3
+    StructureOneLayerSquared = 4
+    StructureTwoLayersSigmoid = 5
+    StructureTwoLayersSquared = 6
+    StructureThreeLayersSigmoid = 7
+    StructureThreeLayersSquared = 8
+    StructureFourLayersSigmoid = 9
+    StructureFourLayersSquared = 10
 
 
-model = Models.LayerWidthInvestigation
+model = Models.StructureOneLayerSigmoid
 train_flag = 1
 encrypted_flag = not train_flag
 checkpoint_file_number = 510
@@ -25,6 +33,31 @@ elif model == Models.WorkingModelPlaintext:
 elif model == Models.LayerWidthInvestigation:
     model_dir = "Models/LayerWidthInvestigation/"
     model_name = "LayerWidthInvestigation"
+elif model == Models.StructureOneLayerSigmoid:
+    model_dir = "Models/StructureInvestigation/"
+    model_name = "StructureOneLayerSigmoid"
+elif model == Models.StructureOneLayerSquared:
+    model_dir = "Models/StructureInvestigation/"
+    model_name = "StructureOneLayerSquared"
+elif model == Models.StructureTwoLayersSigmoid:
+    model_dir = "Models/StructureInvestigation/"
+    model_name = "StructureTwoLayersSigmoid"
+elif model == Models.StructureTwoLayersSquared:
+    model_dir = "Models/StructureInvestigation/"
+    model_name = "StructureTwoLayersSquared"
+elif model == Models.StructureThreeLayersSigmoid:
+    model_dir = "Models/StructureInvestigation/"
+    model_name = "StructureThreeLayersSigmoid"
+elif model == Models.StructureThreeLayersSquared:
+    model_dir = "Models/StructureInvestigation/"
+    model_name = "StructureThreeLayersSquared"
+elif model == Models.StructureFourLayersSigmoid:
+    model_dir = "Models/StructureInvestigation/"
+    model_name = "StructureFourLayersSigmoid"
+elif model == Models.StructureFourLayersSquared:
+    model_dir = "Models/StructureInvestigation/"
+    model_name = "StructureFourLayersSquared"
+
 else:
     print("Invalid model enum.")
     exit(1)
