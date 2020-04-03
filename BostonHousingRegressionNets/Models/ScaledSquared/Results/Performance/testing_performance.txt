@@ -1,0 +1,12 @@
+Testing Loss = 3165.2060546875, Time Elapsed = 0.231
+Testing Loss = 3733.740478515625, Time Elapsed = 0.223
+Testing Loss = 3789.83349609375, Time Elapsed = 0.224
+Testing Loss = 4032.7529296875, Time Elapsed = 0.226
+Testing Loss = 3428.204833984375, Time Elapsed = 0.254
+Testing Loss = 3669.274169921875, Time Elapsed = 0.258
+Testing Loss = 3354.4501953125, Time Elapsed = 0.25
+Testing Loss = 3468.31298828125, Time Elapsed = 0.225
+Testing Loss = 3865.338623046875, Time Elapsed = 0.227
+Testing Loss = 3156.68359375, Time Elapsed = 0.241
+Testing Loss = 3709.25537109375, Time Elapsed = 0.229
+Testing Loss = 3240.751220703125, Time Elapsed = 0.242

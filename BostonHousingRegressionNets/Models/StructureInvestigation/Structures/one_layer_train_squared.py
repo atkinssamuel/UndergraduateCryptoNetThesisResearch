@@ -8,6 +8,7 @@ if encrypted_flag:
 
 
 def one_layer_train_squared(x_train, y_train):
+    print("one_layer_train_squared")
     # Parameters:
     # Base Params:
     input_dimension = x_train.shape[1]
@@ -22,7 +23,7 @@ def one_layer_train_squared(x_train, y_train):
     # Layer 1 Variables:
     W1 = tf.Variable(tf.truncated_normal([input_dimension, hidden_layer_1], stddev=0.15))
     b1 = tf.Variable(tf.zeros([hidden_layer_1]))
-    y1 = tf.math.squared(tf.matmul(x, W1) + b1)
+    y1 = tf.math.square(tf.matmul(x, W1) + b1)
 
     # Output Layer Variables:
     W2 = tf.Variable(tf.truncated_normal([hidden_layer_1, hidden_layer_2], stddev=0.15))
@@ -68,10 +69,10 @@ def one_layer_train_squared(x_train, y_train):
                 checkpoint = f"{TrainingParameters.incomplete_checkpoint_file_location}{epoch_iteration}.ckpt"
                 saver.save(sess, checkpoint)
         sess.close()
-    with open(results_dir + "OneLayer/Squared/" + f'training_output_mean_{hidden_layer_1}.csv', 'a') \
+    with open(results_dir + "OneLayer/Squared/" + f'training_output_mean.csv', 'a') \
             as fd:
         fd.write(f"{np.abs(np.mean(training_output))}, ")
-    with open(results_dir + "OneLayer/Squared/" + f'initial_training_loss_{hidden_layer_1}.csv', 'a') \
+    with open(results_dir + "OneLayer/Squared/" + f'initial_training_loss.csv', 'a') \
             as fd:
         fd.write(f"{training_losses[0]}, ")
     training_losses = np.array(training_losses)

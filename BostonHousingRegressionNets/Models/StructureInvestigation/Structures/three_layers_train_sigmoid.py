@@ -8,13 +8,17 @@ if encrypted_flag:
 
 
 def three_layers_train_sigmoid(x_train, y_train):
+    print("three_layers_train_sigmoid")
     # Parameters:
     # Base Params:
     input_dimension = x_train.shape[1]
     output_dimension = y_train.shape[1]
 
+    layer_complexity_growth = 2
     hidden_layer_1 = 32
-    hidden_layer_2 = 1
+    hidden_layer_2 = hidden_layer_1 * layer_complexity_growth
+    hidden_layer_3 = hidden_layer_2 * layer_complexity_growth
+    output_layer = 1
 
     # Placeholder for batch of inputs:
     x = tf.placeholder(tf.float32, [None, input_dimension])
@@ -24,10 +28,20 @@ def three_layers_train_sigmoid(x_train, y_train):
     b1 = tf.Variable(tf.zeros([hidden_layer_1]))
     y1 = tf.math.sigmoid(tf.matmul(x, W1) + b1)
 
-    # Output Layer Variables:
+    # Layer 2 Variables:
     W2 = tf.Variable(tf.truncated_normal([hidden_layer_1, hidden_layer_2], stddev=0.15))
     b2 = tf.Variable(tf.zeros([hidden_layer_2]))
-    y = tf.matmul(y1, W2) + b2
+    y2 = tf.math.sigmoid(tf.matmul(y1, W2) + b2)
+
+    # Layer 3 Variables:
+    W3 = tf.Variable(tf.truncated_normal([hidden_layer_2, hidden_layer_3], stddev=0.15))
+    b3 = tf.Variable(tf.zeros([hidden_layer_3]))
+    y3 = tf.math.sigmoid(tf.matmul(y2, W3) + b3)
+
+    # Output Layer Variables:
+    W4 = tf.Variable(tf.truncated_normal([hidden_layer_3, output_layer], stddev=0.15))
+    b4 = tf.Variable(tf.zeros([output_layer]))
+    y = tf.matmul(y3, W4) + b4
 
     # Placeholder for batch of targets:
     y_ = tf.placeholder(tf.float32, [None, output_dimension])
@@ -68,10 +82,10 @@ def three_layers_train_sigmoid(x_train, y_train):
                 checkpoint = f"{TrainingParameters.incomplete_checkpoint_file_location}{epoch_iteration}.ckpt"
                 saver.save(sess, checkpoint)
         sess.close()
-    with open(results_dir + "OneLayer/Sigmoid/" + f'training_output_mean_{hidden_layer_1}.csv', 'a') \
+    with open(results_dir + "ThreeLayers/Sigmoid/" + f'training_output_mean.csv', 'a') \
             as fd:
         fd.write(f"{np.abs(np.mean(training_output))}, ")
-    with open(results_dir + "OneLayer/Sigmoid/" + f'initial_training_loss_{hidden_layer_1}.csv', 'a') \
+    with open(results_dir + "ThreeLayers/Sigmoid/" + f'initial_training_loss.csv', 'a') \
             as fd:
         fd.write(f"{training_losses[0]}, ")
     training_losses = np.array(training_losses)

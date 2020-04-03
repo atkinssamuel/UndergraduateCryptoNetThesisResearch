@@ -8,12 +8,13 @@ if encrypted_flag:
 
 
 def one_layer_train_sigmoid(x_train, y_train):
+    print("one_layer_train_sigmoid")
     # Parameters:
     # Base Params:
     input_dimension = x_train.shape[1]
     output_dimension = y_train.shape[1]
 
-    hidden_layer_1 = 8
+    hidden_layer_1 = 32
     hidden_layer_2 = 1
 
     # Placeholder for batch of inputs:
@@ -68,10 +69,10 @@ def one_layer_train_sigmoid(x_train, y_train):
                 checkpoint = f"{TrainingParameters.incomplete_checkpoint_file_location}{epoch_iteration}.ckpt"
                 saver.save(sess, checkpoint)
         sess.close()
-    with open(results_dir + "OneLayer/Sigmoid/" + f'training_output_mean_{hidden_layer_1}.csv', 'a') \
+    with open(results_dir + "OneLayer/Sigmoid/" + f'training_output_mean.csv', 'a') \
             as fd:
         fd.write(f"{np.abs(np.mean(training_output))}, ")
-    with open(results_dir + "OneLayer/Sigmoid/" + f'initial_training_loss_{hidden_layer_1}.csv', 'a') \
+    with open(results_dir + "OneLayer/Sigmoid/" + f'initial_training_loss.csv', 'a') \
             as fd:
         fd.write(f"{training_losses[0]}, ")
     training_losses = np.array(training_losses)

@@ -4,7 +4,7 @@ start_time = time.time()
 
 
 class Models:
-    WorkingModel = 0
+    WorkingModelEncrypted = 0
     WorkingModelPlaintext = 1
     LayerWidthInvestigation = 2
     StructureOneLayerSigmoid = 3
@@ -13,20 +13,19 @@ class Models:
     StructureTwoLayersSquared = 6
     StructureThreeLayersSigmoid = 7
     StructureThreeLayersSquared = 8
-    StructureFourLayersSigmoid = 9
-    StructureFourLayersSquared = 10
+    ScaledSquaredModel = 9
 
 
-model = Models.StructureOneLayerSigmoid
-train_flag = 1
+model = Models.ScaledSquaredModel
+train_flag = 0
 encrypted_flag = not train_flag
-checkpoint_file_number = 510
+checkpoint_file_number = 1480
 
 base_dir = "BostonHousingRegressionNets/"
 
-if model == Models.WorkingModel:
-    model_dir = "Models/WorkingModel/"
-    model_name = "WorkingModel"
+if model == Models.WorkingModelEncrypted:
+    model_dir = "Models/WorkingModelEncrypted/"
+    model_name = "WorkingModelEncrypted"
 elif model == Models.WorkingModelPlaintext:
     model_dir = "Models/WorkingModelPlaintext/"
     model_name = "WorkingModelPlaintext"
@@ -51,12 +50,9 @@ elif model == Models.StructureThreeLayersSigmoid:
 elif model == Models.StructureThreeLayersSquared:
     model_dir = "Models/StructureInvestigation/"
     model_name = "StructureThreeLayersSquared"
-elif model == Models.StructureFourLayersSigmoid:
-    model_dir = "Models/StructureInvestigation/"
-    model_name = "StructureFourLayersSigmoid"
-elif model == Models.StructureFourLayersSquared:
-    model_dir = "Models/StructureInvestigation/"
-    model_name = "StructureFourLayersSquared"
+elif model == Models.ScaledSquaredModel:
+    model_dir = "Models/ScaledSquared/"
+    model_name = "ScaledSquared"
 
 else:
     print("Invalid model enum.")
@@ -94,7 +90,7 @@ class EncryptionParameters:
 
 class TrainingParameters:
     learning_rate = 0.001
-    num_epochs = 1
+    num_epochs = 1500
     num_models = 100
     batch_size = 64
     checkpoint_frequency = 10
