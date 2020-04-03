@@ -3,18 +3,16 @@ from BostonHousingRegressionNets.Models.WorkingModel.working_model_train \
     import working_model_train
 from BostonHousingRegressionNets.Models.WorkingModelPlaintext.working_model_plaintext_train \
     import working_model_plaintext_train
-from BostonHousingRegressionNets.Models.ThresholdModel.threshold_model_train \
+from BostonHousingRegressionNets.Models.StructureInvestigation.threshold_model_train \
     import threshold_model_train
-from BostonHousingRegressionNets.Models.ExplodedModel.exploded_model_train \
-    import exploded_model_train
+from BostonHousingRegressionNets.Models.LayerWidthInvestigation.layer_width_investigation_train \
+    import layer_width_investigation_train
 from BostonHousingRegressionNets.Models.WorkingModel.working_model_test import \
     working_model_test
 from BostonHousingRegressionNets.Models.WorkingModelPlaintext.working_model_plaintext_test \
     import working_model_plaintext_test
-from BostonHousingRegressionNets.Models.ThresholdModel.threshold_model_test import \
+from BostonHousingRegressionNets.Models.StructureInvestigation.threshold_model_test import \
     threshold_model_test
-from BostonHousingRegressionNets.Models.ExplodedModel.exploded_model_test import \
-    exploded_model_test
 
 
 from DataManagement.data_loading import load_boston_housing
@@ -30,16 +28,13 @@ if __name__ == "__main__":
             working_model_train(x_train, y_train)
         elif model == Models.WorkingModelPlaintext:
             working_model_plaintext_train(x_train, y_train)
-        elif model == Models.ThresholdModel:
-            threshold_model_train(x_train, y_train)
-        elif model == Models.ExplodedModel:
-            exploded_model_train(x_train, y_train)
+        elif model == Models.LayerWidthInvestigation:
+            layer_width_investigation_train(x_train, y_train)
     else:
         if model == Models.WorkingModel:
             working_model_test(x_test, y_test)
         elif model == Models.WorkingModelPlaintext:
             working_model_plaintext_test(x_test, y_test)
-        elif model == Models.ThresholdModel:
-            threshold_model_test(x_test, y_test)
-        elif model == Models.ExplodedModel:
-            exploded_model_test(x_test, y_test)
+        elif model == Models.LayerWidthInvestigation:
+            print("No test file for LayerWidthInvestigation.")
+            exit(1)

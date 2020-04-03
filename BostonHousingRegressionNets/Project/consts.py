@@ -6,11 +6,10 @@ start_time = time.time()
 class Models:
     WorkingModel = 0
     WorkingModelPlaintext = 1
-    ThresholdModel = 2
-    ExplodedModel = 3
+    LayerWidthInvestigation = 2
 
 
-model = Models.ExplodedModel
+model = Models.LayerWidthInvestigation
 train_flag = 1
 encrypted_flag = not train_flag
 checkpoint_file_number = 510
@@ -23,12 +22,9 @@ if model == Models.WorkingModel:
 elif model == Models.WorkingModelPlaintext:
     model_dir = "Models/WorkingModelPlaintext/"
     model_name = "WorkingModelPlaintext"
-elif model == Models.ThresholdModel:
-    model_dir = "Models/ThresholdModel/"
-    model_name = "ThresholdModel"
-elif model == Models.ExplodedModel:
-    model_dir = "Models/ExplodedModel/"
-    model_name = "ExplodedModel"
+elif model == Models.LayerWidthInvestigation:
+    model_dir = "Models/LayerWidthInvestigation/"
+    model_name = "LayerWidthInvestigation"
 else:
     print("Invalid model enum.")
     exit(1)
