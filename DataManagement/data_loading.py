@@ -111,3 +111,27 @@ def load_boston_housing(train_percentage=100, test_percentage=100):
                                            (x_test[:adjusted_test_count], y_test[:adjusted_test_count])
 
     return (x_train, y_train), (x_test, y_test)
+
+
+def load_year_prediction(train_percentage=100, validation_percentage=100, test_percentage=100):
+    x_train = np.load(year_prediction_constants.year_prediction_np_save_dir + "x_train.npy")
+    y_train = np.load(year_prediction_constants.year_prediction_np_save_dir + "y_train.npy")
+    x_valid = np.load(year_prediction_constants.year_prediction_np_save_dir + "x_train.npy")
+    y_valid = np.load(year_prediction_constants.year_prediction_np_save_dir + "y_train.npy")
+    x_test = np.load(year_prediction_constants.year_prediction_np_save_dir + "x_test.npy")
+    y_test = np.load(year_prediction_constants.year_prediction_np_save_dir + "y_test.npy")
+
+    train_count = x_train.shape[0]
+    valid_count = x_valid.shape[0]
+    test_count = x_test.shape[0]
+
+    adjusted_train_count = round(train_percentage / 100 * train_count)
+    adjusted_valid_count = round(validation_percentage / 100 * valid_count)
+    adjusted_test_count = round(test_percentage / 100 * test_count)
+
+    (x_train, y_train), (x_valid, y_valid), (x_test, y_test) = \
+        (x_train[:adjusted_train_count], y_train[:adjusted_train_count]), \
+        (x_valid[:adjusted_valid_count], y_valid[:adjusted_valid_count]), \
+        (x_test[:adjusted_test_count], y_test[:adjusted_test_count])
+    return (x_train, y_train), (x_valid, y_valid), (x_test, y_test)
+

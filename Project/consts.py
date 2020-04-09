@@ -149,6 +149,7 @@ class TrainingParameters:
     checkpoint_frequency = 10
     incomplete_checkpoint_file_location = checkpoint_dir + model_type + "_" + model_name + "_Epoch_"
     training_dataset_percentage = 100
+    valid_dataset_percentage = 100
     training_output_numpy_file_path = "training_output_epoch_"
     training_targets_numpy_file_path = "training_targets_epoch_"
     training_losses_numpy_file_path = "training_losses"

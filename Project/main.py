@@ -42,15 +42,13 @@ from PerformanceComparison.Classification.Models.SomewhatComplexClassification.s
     import somewhat_complex_classification_test
 from PerformanceComparison.Classification.Models.SimpleClassification.simple_classification_train import simple_classification_train
 from PerformanceComparison.Classification.Models.SimpleClassification.simple_classification_test import simple_classification_test
+from DataManagement.data_loading import *
 
-
-
-
-from DataManagement.data_loading import load_boston_housing
 
 if __name__ == "__main__":
-    (x_train, y_train), (x_test, y_test) = load_boston_housing(
+    (x_train, y_train), (x_test, y_test) = load_year_prediction(
         train_percentage=TrainingParameters.training_dataset_percentage,
+        validation_percentage=TrainingParameters.valid_dataset_percentage,
         test_percentage=TestingParameters.testing_dataset_percentage)
 
     if train_flag:

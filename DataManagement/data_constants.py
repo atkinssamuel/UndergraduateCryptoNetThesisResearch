@@ -17,3 +17,8 @@ class fashion_mnist_constants:
 
 class boston_housing_constants:
     boston_housing_np_save_dir = "DataManagement/BostonHousing/NumpyDataset/"
+
+class year_prediction_constants:
+    year_prediction_np_save_dir = "DataManagement/YearPrediction/NumpyDataset/"
+    year_prediction_dataset_dir = "DataManagement/YearPrediction/Dataset/"
+    year_prediction_filename = "YearPredictionMSD.txt"
