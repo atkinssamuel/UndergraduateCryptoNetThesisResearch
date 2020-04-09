@@ -14,46 +14,100 @@ class Models:
     StructureThreeLayersSigmoid = 7
     StructureThreeLayersSquared = 8
     ScaledSquaredModel = 9
+    SimpleRegression = 10
+    SomewhatComplexRegression = 11
+    ComplexRegression = 12
+    SimpleClassification = 13
+    SomewhatComplexClassification = 14
+    ComplexClassification = 15
 
 
-model = Models.ScaledSquaredModel
-train_flag = 0
+model = Models.SimpleRegression
+train_flag = 1
 encrypted_flag = not train_flag
 checkpoint_file_number = 1480
 
-base_dir = "BostonHousingRegressionNets/"
 
 if model == Models.WorkingModelEncrypted:
     model_dir = "Models/WorkingModelEncrypted/"
     model_name = "WorkingModelEncrypted"
+    model_type = "Regression"
+    base_dir = "ActivationLayerResearch/"
 elif model == Models.WorkingModelPlaintext:
     model_dir = "Models/WorkingModelPlaintext/"
     model_name = "WorkingModelPlaintext"
+    model_type = "Regression"
+    base_dir = "ActivationLayerResearch/"
 elif model == Models.LayerWidthInvestigation:
     model_dir = "Models/LayerWidthInvestigation/"
     model_name = "LayerWidthInvestigation"
+    model_type = "Regression"
+    base_dir = "ActivationLayerResearch/"
 elif model == Models.StructureOneLayerSigmoid:
     model_dir = "Models/StructureInvestigation/"
     model_name = "StructureOneLayerSigmoid"
+    model_type = "Regression"
+    base_dir = "ActivationLayerResearch/"
 elif model == Models.StructureOneLayerSquared:
     model_dir = "Models/StructureInvestigation/"
     model_name = "StructureOneLayerSquared"
+    model_type = "Regression"
+    base_dir = "ActivationLayerResearch/"
 elif model == Models.StructureTwoLayersSigmoid:
     model_dir = "Models/StructureInvestigation/"
     model_name = "StructureTwoLayersSigmoid"
+    model_type = "Regression"
+    base_dir = "ActivationLayerResearch/"
 elif model == Models.StructureTwoLayersSquared:
     model_dir = "Models/StructureInvestigation/"
     model_name = "StructureTwoLayersSquared"
+    model_type = "Regression"
+    base_dir = "ActivationLayerResearch/"
 elif model == Models.StructureThreeLayersSigmoid:
     model_dir = "Models/StructureInvestigation/"
     model_name = "StructureThreeLayersSigmoid"
+    model_type = "Regression"
+    base_dir = "ActivationLayerResearch/"
 elif model == Models.StructureThreeLayersSquared:
     model_dir = "Models/StructureInvestigation/"
     model_name = "StructureThreeLayersSquared"
+    model_type = "Regression"
+    base_dir = "ActivationLayerResearch/"
 elif model == Models.ScaledSquaredModel:
     model_dir = "Models/ScaledSquared/"
     model_name = "ScaledSquared"
-
+    model_type = "Regression"
+    base_dir = "ActivationLayerResearch/"
+elif model == Models.SimpleRegression:
+    model_dir = "Models/SimpleRegression/"
+    model_name = "SimpleRegression"
+    model_type = "Regression"
+    base_dir = "PerformanceComparison/Regression/"
+elif model == Models.SomewhatComplexRegression:
+    model_dir = "Models/SomewhatComplexRegression/"
+    model_name = "SomewhatComplexRegression"
+    model_type = "Regression"
+    base_dir = "PerformanceComparison/Regression/"
+elif model == Models.ComplexRegression:
+    model_dir = "Models/ComplexRegression/"
+    model_name = "ComplexRegression"
+    model_type = "Regression"
+    base_dir = "PerformanceComparison/Regression/"
+elif model == Models.SimpleClassification:
+    model_dir = "Models/SimpleClassification/"
+    model_name = "SimpleClassification"
+    model_type = "Classification"
+    base_dir = "PerformanceComparison/Classification/"
+elif model == Models.SomewhatComplexClassification:
+    model_dir = "Models/SomewhatComplexClassification/"
+    model_name = "SomewhatComplexClassification"
+    model_type = "Classification"
+    base_dir = "PerformanceComparison/Classification/"
+elif model == Models.ComplexClassification:
+    model_dir = "Models/ComplexClassification/"
+    model_name = "ComplexClassification"
+    model_type = "Classification"
+    base_dir = "PerformanceComparison/Classification/"
 else:
     print("Invalid model enum.")
     exit(1)
@@ -66,7 +120,6 @@ testing_results_numpy_save_dir = base_dir + model_dir + "Results/TestingNumpy/"
 testing_results_save_dir = base_dir + model_dir + "Results/Testing/"
 config_base_options_dir = "Config/BaseOptions/"
 config_options_dir = "Config/Options/"
-model_type = "BostonHousingRegression"
 
 
 
