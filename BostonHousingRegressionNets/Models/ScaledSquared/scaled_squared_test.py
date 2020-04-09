@@ -1,7 +1,7 @@
 import numpy as np
 import tensorflow as tf
 
-from BostonHousingRegressionNets.Project.consts import *
+from Project.consts import *
 
 def scaled_squared_test(x_test, y_test):
     print("scaled_squared_test")

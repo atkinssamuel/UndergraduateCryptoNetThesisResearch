@@ -1,7 +1,7 @@
 import numpy as np
 import tensorflow as tf
 
-from BostonHousingRegressionNets.Project.consts import *
+from Project.consts import *
 
 def working_model_plaintext_test(x_test, y_test):
     # Parameters:

@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-from BostonHousingRegressionNets.Project.consts import *
+from Project.consts import *
 
 def plot_loss(losses, title, x_label, y_label, save_directory="", save_title="", show=False):
     plt.plot(losses, "m", label="Training Losses")

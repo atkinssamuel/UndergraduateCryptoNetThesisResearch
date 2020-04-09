@@ -1,4 +1,4 @@
-from BostonHousingRegressionNets.Project.consts import *
+from Project.consts import *
 from BostonHousingRegressionNets.Models.WorkingModelEncrypted.working_model_train \
     import working_model_encrypted_train
 from BostonHousingRegressionNets.Models.WorkingModelPlaintext.working_model_plaintext_train \
@@ -33,10 +33,12 @@ if __name__ == "__main__":
         test_percentage=TestingParameters.testing_dataset_percentage)
 
     if train_flag:
+        # Simple Working Models
         if model == Models.WorkingModelEncrypted:
             working_model_encrypted_train(x_train, y_train)
         elif model == Models.WorkingModelPlaintext:
             working_model_plaintext_train(x_train, y_train)
+        # Layer Width Investigation
         elif model == Models.LayerWidthInvestigation:
             layer_width_investigation_train(x_train, y_train)
         # Structure Investigation

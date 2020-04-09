@@ -1,7 +1,7 @@
 import tensorflow as tf
 import numpy as np
 
-from BostonHousingRegressionNets.Project.consts import *
+from Project.consts import *
 
 if encrypted_flag:
     pass
