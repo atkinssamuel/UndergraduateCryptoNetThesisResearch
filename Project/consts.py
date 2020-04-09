@@ -23,7 +23,7 @@ class Models:
 
 
 model = Models.SimpleRegression
-train_flag = 1
+train_flag = 0
 encrypted_flag = not train_flag
 checkpoint_file_number = 1480
 

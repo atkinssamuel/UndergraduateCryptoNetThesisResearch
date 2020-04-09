@@ -96,11 +96,8 @@ def complex_regression_train(x_train, y_train):
     print(f"Total Training Time Elapsed = {time_elapsed}s")
     print(f"Min Training Loss = {training_losses[min_index]} at Epoch {min_index}")
 
-    with open(results_dir + "Performance/" + f'training_performance.txt', 'a') \
-            as fd:
-        fd.write(f"Training Loss = {training_losses[min_index]}, Epoch = {min_index}\n")
-
     np.save(training_results_save_dir + "training_time_elapsed", time_elapsed)
+    np.savetxt(training_results_save_dir + "training_time_elapsed.csv", [time_elapsed], delimiter=',')
     return
 
 
