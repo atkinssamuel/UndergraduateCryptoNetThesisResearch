@@ -4,8 +4,10 @@ import matplotlib.pyplot as plt
 
 from Project.consts import *
 
-def plot_loss(losses, title, x_label, y_label, save_directory="", save_title="", show=False):
+
+def plot_loss(losses, validation_losses, title, x_label, y_label, save_directory="", save_title="", show=False):
     plt.plot(losses, "m", label="Training Losses")
+    plt.plot(validation_losses, "y", label="Validation Losses")
     plt.title(title)
     plt.xlabel(x_label)
     plt.ylabel(y_label)
@@ -49,7 +51,9 @@ def plot_results():
     # Training Loss Plotting:
     training_losses = np.load(training_results_numpy_save_dir + TrainingParameters.training_losses_numpy_file_path
                               + ".npy")
-    plot_loss(training_losses, title=f"Training Losses:", x_label="Epoch Iteration", y_label="Loss",
+    validation_losses = np.load(training_results_numpy_save_dir + TrainingParameters.validation_losses_numpy_file_path
+                                + ".npy")
+    plot_loss(training_losses, validation_losses=validation_losses, title=f"Training Losses:", x_label="Epoch Iteration", y_label="Loss",
               save_directory=training_results_save_dir, save_title="training_loss.png",
               show=PlottingParameters.plot_training_loss)
 

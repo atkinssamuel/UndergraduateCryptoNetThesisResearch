@@ -46,21 +46,21 @@ from DataManagement.data_loading import *
 
 
 if __name__ == "__main__":
-    (x_train, y_train), (x_test, y_test) = load_year_prediction(
+    (x_train, y_train), (x_valid, y_valid), (x_test, y_test) = load_year_prediction(
         train_percentage=TrainingParameters.training_dataset_percentage,
         validation_percentage=TrainingParameters.valid_dataset_percentage,
         test_percentage=TestingParameters.testing_dataset_percentage)
 
     if train_flag:
-        # Simple Working Models
+        # Simple Working Models - Boston Housing Dataset
         if model == Models.WorkingModelEncrypted:
             working_model_encrypted_train(x_train, y_train)
         elif model == Models.WorkingModelPlaintext:
             working_model_plaintext_train(x_train, y_train)
-        # Layer Width Investigation
+        # Layer Width Investigation - Boston Housing Dataset
         elif model == Models.LayerWidthInvestigation:
             layer_width_investigation_train(x_train, y_train)
-        # Structure Investigation
+        # Structure Investigation - Boston Housing Dataset
         elif model == Models.StructureOneLayerSigmoid:
             one_layer_train_sigmoid(x_train, y_train)
         elif model == Models.StructureOneLayerSquared:
@@ -73,17 +73,17 @@ if __name__ == "__main__":
             three_layers_train_sigmoid(x_train, y_train)
         elif model == Models.StructureThreeLayersSquared:
             three_layers_train_squared(x_train, y_train)
-        # Scaled Squared Model
+        # Scaled Squared Model - Boston Housing Dataset
         elif model == Models.ScaledSquaredModel:
             scaled_squared_train(x_train, y_train)
-        # Regression Comparison
+        # Regression Comparison - Year Prediction Dataset
         elif model == Models.SimpleRegression:
-            simple_regression_train(x_train, y_train)
+            simple_regression_train(x_train, y_train, x_valid, y_valid)
         elif model == Models.SomewhatComplexRegression:
-            somewhat_complex_regression_train(x_train, y_train)
+            somewhat_complex_regression_train(x_train, y_train, x_valid, y_valid)
         elif model == Models.ComplexRegression:
-            complex_regression_train(x_train, y_train)
-        # Classification Comparison
+            complex_regression_train(x_train, y_train, x_valid, y_valid)
+        # Classification Comparison - MNIST Dataset
         elif model == Models.SimpleClassification:
             simple_classification_train(x_train, y_train)
         elif model == Models.SomewhatComplexClassification:

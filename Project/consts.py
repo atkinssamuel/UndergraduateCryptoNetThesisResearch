@@ -22,8 +22,8 @@ class Models:
     ComplexClassification = 15
 
 
-model = Models.SimpleRegression
-train_flag = 0
+model = Models.ComplexRegression
+train_flag = 1
 encrypted_flag = not train_flag
 checkpoint_file_number = 1480
 
@@ -142,8 +142,8 @@ class EncryptionParameters:
     config = encryption_config(backend=backend, encryption_parameters=encryption_parameters)
 
 class TrainingParameters:
-    learning_rate = 0.001
-    num_epochs = 1500
+    learning_rate = 0.0005
+    num_epochs = 50
     num_models = 100
     batch_size = 64
     checkpoint_frequency = 10
@@ -153,6 +153,7 @@ class TrainingParameters:
     training_output_numpy_file_path = "training_output_epoch_"
     training_targets_numpy_file_path = "training_targets_epoch_"
     training_losses_numpy_file_path = "training_losses"
+    validation_losses_numpy_file_path = "validation_losses"
 
 
 class TestingParameters:

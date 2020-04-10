@@ -116,8 +116,8 @@ def load_boston_housing(train_percentage=100, test_percentage=100):
 def load_year_prediction(train_percentage=100, validation_percentage=100, test_percentage=100):
     x_train = np.load(year_prediction_constants.year_prediction_np_save_dir + "x_train.npy")
     y_train = np.load(year_prediction_constants.year_prediction_np_save_dir + "y_train.npy")
-    x_valid = np.load(year_prediction_constants.year_prediction_np_save_dir + "x_train.npy")
-    y_valid = np.load(year_prediction_constants.year_prediction_np_save_dir + "y_train.npy")
+    x_valid = np.load(year_prediction_constants.year_prediction_np_save_dir + "x_valid.npy")
+    y_valid = np.load(year_prediction_constants.year_prediction_np_save_dir + "y_valid.npy")
     x_test = np.load(year_prediction_constants.year_prediction_np_save_dir + "x_test.npy")
     y_test = np.load(year_prediction_constants.year_prediction_np_save_dir + "y_test.npy")
 
