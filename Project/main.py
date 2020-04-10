@@ -46,10 +46,19 @@ from DataManagement.data_loading import *
 
 
 if __name__ == "__main__":
-    (x_train, y_train), (x_valid, y_valid), (x_test, y_test) = load_year_prediction(
-        train_percentage=TrainingParameters.training_dataset_percentage,
-        validation_percentage=TrainingParameters.valid_dataset_percentage,
-        test_percentage=TestingParameters.testing_dataset_percentage)
+    if Models.WorkingModelEncrypted <= model <= Models.ScaledSquaredModel:
+        (x_train, y_train), (x_test, y_test) = load_boston_housing(
+            train_percentage=TrainingParameters.training_dataset_percentage,
+            test_percentage=TestingParameters.testing_dataset_percentage)
+    elif Models.SimpleRegression <= model <= Models.ComplexRegression:
+        (x_train, y_train), (x_valid, y_valid), (x_test, y_test) = load_year_prediction(
+            train_percentage=TrainingParameters.training_dataset_percentage,
+            validation_percentage=TrainingParameters.valid_dataset_percentage,
+            test_percentage=TestingParameters.testing_dataset_percentage)
+    elif Models.SimpleClassification <= model <= Models.ComplexClassification:
+        (x_train, y_train), (x_test, y_test) = load_MNIST(
+            train_percentage=TrainingParameters.training_dataset_percentage,
+            test_percentage=TestingParameters.testing_dataset_percentage)
 
     if train_flag:
         # Simple Working Models - Boston Housing Dataset

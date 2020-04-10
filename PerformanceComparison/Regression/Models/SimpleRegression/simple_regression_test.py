@@ -4,12 +4,14 @@ import tensorflow as tf
 from Project.consts import *
 
 def simple_regression_test(x_test, y_test):
-    print("simple_regression_test")
+    print("complex_regression_test")
     # Parameters:
     input_dimension = x_test.shape[1]
     output_dimension = y_test.shape[1]
-    l1_scaling = 0.01
-    hidden_layer_1 = 32
+
+    layer_complexity_growth = 2
+    l1_scaling, l2_scaling, l3_scaling = 1, 1, 1
+    hidden_layer_1 = input_dimension
     output_layer = 1
 
     # Placeholder for batch of inputs:
@@ -18,7 +20,7 @@ def simple_regression_test(x_test, y_test):
     # Layer 1 Variables:
     W1 = tf.Variable(tf.truncated_normal([input_dimension, hidden_layer_1], stddev=0.15))
     b1 = tf.Variable(tf.zeros([hidden_layer_1]))
-    y1 = l1_scaling * tf.math.square(tf.matmul(x, W1) + b1)
+    y1 = l1_scaling * tf.math.sigmoid(tf.matmul(x, W1) + b1)
 
     # Output Layer Variables:
     W2 = tf.Variable(tf.truncated_normal([hidden_layer_1, output_layer], stddev=0.15))
@@ -30,6 +32,7 @@ def simple_regression_test(x_test, y_test):
 
     cost = tf.reduce_sum(tf.math.square(y - y_))
     optimizer = tf.train.AdamOptimizer(TrainingParameters.learning_rate).minimize(cost)
+
 
     # For weight saving:
     saver = tf.train.Saver()

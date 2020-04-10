@@ -14,8 +14,9 @@ def simple_regression_train(x_train, y_train, x_valid, y_valid):
     input_dimension = x_train.shape[1]
     output_dimension = y_train.shape[1]
 
-    l1_scaling = 0.01
-    hidden_layer_1 = 32
+    layer_complexity_growth = 2
+    l1_scaling, l2_scaling, l3_scaling = 1, 1, 1
+    hidden_layer_1 = input_dimension
     output_layer = 1
 
     # Placeholder for batch of inputs:
@@ -24,7 +25,7 @@ def simple_regression_train(x_train, y_train, x_valid, y_valid):
     # Layer 1 Variables:
     W1 = tf.Variable(tf.truncated_normal([input_dimension, hidden_layer_1], stddev=0.15))
     b1 = tf.Variable(tf.zeros([hidden_layer_1]))
-    y1 = l1_scaling * tf.math.square(tf.matmul(x, W1) + b1)
+    y1 = l1_scaling * tf.math.sigmoid(tf.matmul(x, W1) + b1)
 
     # Output Layer Variables:
     W2 = tf.Variable(tf.truncated_normal([hidden_layer_1, output_layer], stddev=0.15))
@@ -90,20 +91,18 @@ def simple_regression_train(x_train, y_train, x_valid, y_valid):
                validation_losses, delimiter=',')
     np.save(training_results_numpy_save_dir + f"{TrainingParameters.validation_losses_numpy_file_path}",
             validation_losses)
-    max_value = np.max(training_losses)
-    for i in range(np.size(training_losses)):
+    max_value = np.max(validation_losses)
+    for i in range(np.size(validation_losses)):
         if i % TrainingParameters.checkpoint_frequency != 0:
-            training_losses[i] = max_value
-    min_index = np.argmin(training_losses)
+            validation_losses[i] = max_value
+    min_index = np.argmin(validation_losses)
     time_elapsed = round(time.time() - start_time, 3)
 
     print(f"Total Training Time Elapsed = {time_elapsed}s")
-    print(f"Min Training Loss = {training_losses[min_index]} at Epoch {min_index}")
+    print(f"Min Validation Loss = {validation_losses[min_index][0]} at Epoch {min_index}")
 
     np.save(training_results_save_dir + "training_time_elapsed", time_elapsed)
     np.savetxt(training_results_save_dir + "training_time_elapsed.csv", [time_elapsed], delimiter=',')
     return
-
-
 
 

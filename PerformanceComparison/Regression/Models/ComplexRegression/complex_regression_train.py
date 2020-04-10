@@ -16,7 +16,7 @@ def complex_regression_train(x_train, y_train, x_valid, y_valid):
 
     layer_complexity_growth = 2
     l1_scaling, l2_scaling, l3_scaling = 1, 1, 1
-    hidden_layer_1 = 32
+    hidden_layer_1 = input_dimension
     hidden_layer_2 = hidden_layer_1 * layer_complexity_growth
     hidden_layer_3 = hidden_layer_2 * layer_complexity_growth
     output_layer = 1
@@ -103,15 +103,15 @@ def complex_regression_train(x_train, y_train, x_valid, y_valid):
                validation_losses, delimiter=',')
     np.save(training_results_numpy_save_dir + f"{TrainingParameters.validation_losses_numpy_file_path}",
             validation_losses)
-    max_value = np.max(training_losses)
-    for i in range(np.size(training_losses)):
+    max_value = np.max(validation_losses)
+    for i in range(np.size(validation_losses)):
         if i % TrainingParameters.checkpoint_frequency != 0:
-            training_losses[i] = max_value
-    min_index = np.argmin(training_losses)
+            validation_losses[i] = max_value
+    min_index = np.argmin(validation_losses)
     time_elapsed = round(time.time() - start_time, 3)
 
     print(f"Total Training Time Elapsed = {time_elapsed}s")
-    print(f"Min Training Loss = {training_losses[min_index]} at Epoch {min_index}")
+    print(f"Min Validation Loss = {validation_losses[min_index][0]} at Epoch {min_index}")
 
     np.save(training_results_save_dir + "training_time_elapsed", time_elapsed)
     np.savetxt(training_results_save_dir + "training_time_elapsed.csv", [time_elapsed], delimiter=',')

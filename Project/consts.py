@@ -22,10 +22,10 @@ class Models:
     ComplexClassification = 15
 
 
-model = Models.ComplexRegression
+model = Models.SimpleRegression
 train_flag = 1
 encrypted_flag = not train_flag
-checkpoint_file_number = 1480
+checkpoint_file_number = 30
 
 
 if model == Models.WorkingModelEncrypted:
@@ -169,3 +169,4 @@ class PlottingParameters:
     plot_training_outputs = False
     plot_training_loss = True
     plot_testing_outputs = True
+    testing_output_plot_percentage = 0.2

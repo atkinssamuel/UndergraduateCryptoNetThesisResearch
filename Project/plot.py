@@ -42,7 +42,9 @@ def plot_results():
                                   + f"{epoch_iteration}.npy")
         y_train = np.load(training_results_numpy_save_dir + TrainingParameters.training_targets_numpy_file_path
                           + f"{epoch_iteration}.npy")
-        plot_regression_outputs(training_output, y_train, title=f"Training Output Comparison at Epoch {epoch_iteration}:",
+        plot_regression_outputs(training_output,
+                                y_train,
+                                title=f"Training Output Comparison at Epoch {epoch_iteration}:",
                                 x_label="Data Index", y_label="Housing Price in USD",
                                 save_directory=training_results_save_dir,
                                 save_title=f"training_output_comparison_epoch_{epoch_iteration}.png",
@@ -61,7 +63,10 @@ def plot_results():
     # Testing Plotting:
     test_output = np.load(testing_results_numpy_save_dir + TestingParameters.testing_numpy_file_path + ".npy")
     y_test = np.load(testing_results_numpy_save_dir + TestingParameters.testing_targets_numpy_file_path + ".npy")
-    plot_regression_outputs(test_output, y_test, title="Testing Output Comparison:", x_label="Data Index",
+    test_plot_max_index = round(PlottingParameters.testing_output_plot_percentage / 100 * test_output.shape[0])
+    plot_regression_outputs(test_output[:test_plot_max_index],
+                            y_test[:test_plot_max_index],
+                            title="Testing Output Comparison:", x_label="Data Index",
                             y_label="Housing Price in USD", save_directory=testing_results_save_dir,
                             save_title="testing_output.png", show=PlottingParameters.plot_testing_outputs)
 
