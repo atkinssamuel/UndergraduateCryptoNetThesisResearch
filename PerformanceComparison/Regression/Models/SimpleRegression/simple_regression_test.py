@@ -4,14 +4,14 @@ import tensorflow as tf
 from Project.consts import *
 
 def simple_regression_test(x_test, y_test):
-    print("complex_regression_test")
+    print("simple_regression_test")
     # Parameters:
     input_dimension = x_test.shape[1]
     output_dimension = y_test.shape[1]
 
-    layer_complexity_growth = 2
-    l1_scaling, l2_scaling, l3_scaling = 1, 1, 1
-    hidden_layer_1 = input_dimension
+    layer_complexity_growth = 1.5
+    l1_scaling = 0.001
+    hidden_layer_1 = round(input_dimension * layer_complexity_growth)
     output_layer = 1
 
     # Placeholder for batch of inputs:
@@ -20,7 +20,7 @@ def simple_regression_test(x_test, y_test):
     # Layer 1 Variables:
     W1 = tf.Variable(tf.truncated_normal([input_dimension, hidden_layer_1], stddev=0.15))
     b1 = tf.Variable(tf.zeros([hidden_layer_1]))
-    y1 = l1_scaling * tf.math.sigmoid(tf.matmul(x, W1) + b1)
+    y1 = l1_scaling * tf.math.square(tf.matmul(x, W1) + b1)
 
     # Output Layer Variables:
     W2 = tf.Variable(tf.truncated_normal([hidden_layer_1, output_layer], stddev=0.15))
@@ -49,9 +49,14 @@ def simple_regression_test(x_test, y_test):
     time_elapsed = round(time.time() - start_time, 3)
     print(f"Testing Time Elapsed = {time_elapsed}s")
     print(f"Test Loss = {test_loss}")
-    np.save(testing_results_numpy_save_dir + TestingParameters.testing_numpy_file_path, test_output)
+    np.save(testing_results_numpy_save_dir + TestingParameters.testing_output_numpy_file_path, test_output)
     np.save(testing_results_numpy_save_dir + TestingParameters.testing_targets_numpy_file_path, y_test)
     np.save(testing_results_save_dir + "testing_time_elapsed", time_elapsed)
     np.save(testing_results_save_dir + "testing_loss", test_loss)
 
+    test_output = np.array(test_output)
+    difference = np.abs(test_output - y_test)
+    correct_count = np.sum(difference <= 10)
+    accuracy = (correct_count/test_output.shape[0]) * 100
+    print(f"Testing Accuracy = {round(accuracy, 2)}%")
     return

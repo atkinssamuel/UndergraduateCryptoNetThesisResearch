@@ -62,7 +62,7 @@ def complex_regression_test(x_test, y_test):
     time_elapsed = round(time.time() - start_time, 3)
     print(f"Testing Time Elapsed = {time_elapsed}s")
     print(f"Test Loss = {test_loss}")
-    np.save(testing_results_numpy_save_dir + TestingParameters.testing_numpy_file_path, test_output)
+    np.save(testing_results_numpy_save_dir + TestingParameters.testing_output_numpy_file_path, test_output)
     np.save(testing_results_numpy_save_dir + TestingParameters.testing_targets_numpy_file_path, y_test)
     np.save(testing_results_save_dir + "testing_time_elapsed", time_elapsed)
     np.save(testing_results_save_dir + "testing_loss", test_loss)

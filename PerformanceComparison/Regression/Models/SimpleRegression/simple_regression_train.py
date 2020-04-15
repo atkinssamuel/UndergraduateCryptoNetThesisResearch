@@ -14,9 +14,9 @@ def simple_regression_train(x_train, y_train, x_valid, y_valid):
     input_dimension = x_train.shape[1]
     output_dimension = y_train.shape[1]
 
-    layer_complexity_growth = 2
-    l1_scaling, l2_scaling, l3_scaling = 1, 1, 1
-    hidden_layer_1 = input_dimension
+    layer_complexity_growth = 1.5
+    l1_scaling = 0.001
+    hidden_layer_1 = round(input_dimension * layer_complexity_growth)
     output_layer = 1
 
     # Placeholder for batch of inputs:
@@ -25,7 +25,7 @@ def simple_regression_train(x_train, y_train, x_valid, y_valid):
     # Layer 1 Variables:
     W1 = tf.Variable(tf.truncated_normal([input_dimension, hidden_layer_1], stddev=0.15))
     b1 = tf.Variable(tf.zeros([hidden_layer_1]))
-    y1 = l1_scaling * tf.math.sigmoid(tf.matmul(x, W1) + b1)
+    y1 = l1_scaling * tf.math.square(tf.matmul(x, W1) + b1)
 
     # Output Layer Variables:
     W2 = tf.Variable(tf.truncated_normal([hidden_layer_1, output_layer], stddev=0.15))
@@ -55,6 +55,11 @@ def simple_regression_train(x_train, y_train, x_valid, y_valid):
             for batch in range(int(sample_count / TrainingParameters.batch_size)):
                 batch_x = x_train[batch * TrainingParameters.batch_size: (1 + batch) * TrainingParameters.batch_size]
                 batch_y = y_train[batch * TrainingParameters.batch_size: (1 + batch) * TrainingParameters.batch_size]
+
+                if batch == 250 and encrypted_flag == 1:
+                    time_elapsed = round(time.time() - start_time, 3)
+                    print(f"Time Elapsed = {time_elapsed}, Current Batch = {batch}")
+                    return
                 # Instantiating the inputs and targets with the batch values:
                 optim_out = np.array(sess.run([optimizer], feed_dict={x: batch_x, y_: batch_y}))
 

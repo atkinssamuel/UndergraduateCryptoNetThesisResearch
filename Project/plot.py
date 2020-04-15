@@ -55,19 +55,19 @@ def plot_results():
                               + ".npy")
     validation_losses = np.load(training_results_numpy_save_dir + TrainingParameters.validation_losses_numpy_file_path
                                 + ".npy")
-    plot_loss(training_losses, validation_losses=validation_losses, title=f"Training Losses:", x_label="Epoch Iteration", y_label="Loss",
+    plot_loss(training_losses, validation_losses=validation_losses, title=f"Training and Validation Loss Plot", x_label="Epoch Iteration", y_label="Loss",
               save_directory=training_results_save_dir, save_title="training_loss.png",
               show=PlottingParameters.plot_training_loss)
 
 
     # Testing Plotting:
-    test_output = np.load(testing_results_numpy_save_dir + TestingParameters.testing_numpy_file_path + ".npy")
+    test_output = np.load(testing_results_numpy_save_dir + TestingParameters.testing_output_numpy_file_path + ".npy")
     y_test = np.load(testing_results_numpy_save_dir + TestingParameters.testing_targets_numpy_file_path + ".npy")
     test_plot_max_index = round(PlottingParameters.testing_output_plot_percentage / 100 * test_output.shape[0])
-    plot_regression_outputs(test_output[:test_plot_max_index],
-                            y_test[:test_plot_max_index],
-                            title="Testing Output Comparison:", x_label="Data Index",
-                            y_label="Housing Price in USD", save_directory=testing_results_save_dir,
+    plot_regression_outputs(predictions=test_output[:test_plot_max_index],
+                            targets=y_test[:test_plot_max_index],
+                            title="Testing Output Comparison:", x_label=plot_x_label,
+                            y_label=plot_y_label, save_directory=testing_results_save_dir,
                             save_title="testing_output.png", show=PlottingParameters.plot_testing_outputs)
 
 
