@@ -9,11 +9,11 @@ def somewhat_complex_regression_test(x_test, y_test):
     input_dimension = x_test.shape[1]
     output_dimension = y_test.shape[1]
 
-    layer_complexity_growth = 2
+    layer_complexity_growth = 1.5
     l1_scaling, l2_scaling, l3_scaling = 0.001, 0.001, 0.001
-    hidden_layer_1 = 32
-    hidden_layer_2 = hidden_layer_1 * layer_complexity_growth
-    hidden_layer_3 = hidden_layer_2 * layer_complexity_growth
+    hidden_layer_1 = round(input_dimension * layer_complexity_growth)
+    hidden_layer_2 = round(hidden_layer_1 * layer_complexity_growth)
+    hidden_layer_3 = round(hidden_layer_2 * layer_complexity_growth)
     output_layer = 1
 
     # Placeholder for batch of inputs:
@@ -55,18 +55,19 @@ def somewhat_complex_regression_test(x_test, y_test):
     with tf.Session(config=EncryptionParameters.config) as sess:
         saver.restore(sess, checkpoint)
         test_output, test_loss = sess.run([y, cost], feed_dict={x: x_test, y_: y_test})
-
-
-
     time_elapsed = round(time.time() - start_time, 3)
+
     print(f"Testing Time Elapsed = {time_elapsed}s")
     print(f"Test Loss = {test_loss}")
+
     np.save(testing_results_numpy_save_dir + TestingParameters.testing_output_numpy_file_path, test_output)
     np.save(testing_results_numpy_save_dir + TestingParameters.testing_targets_numpy_file_path, y_test)
     np.save(testing_results_save_dir + "testing_time_elapsed", time_elapsed)
     np.save(testing_results_save_dir + "testing_loss", test_loss)
 
-    with open(results_dir + "Performance/" + f'testing_performance.txt', 'a') \
-            as fd:
-        fd.write(f"Testing Loss = {test_loss}, Time Elapsed = {time_elapsed}\n")
+    test_output = np.array(test_output)
+    difference = np.abs(test_output - y_test)
+    correct_count = np.sum(difference <= 10)
+    accuracy = (correct_count / test_output.shape[0]) * 100
+    print(f"Testing Accuracy = {round(accuracy, 2)}%")
     return

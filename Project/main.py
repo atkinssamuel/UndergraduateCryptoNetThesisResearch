@@ -112,17 +112,17 @@ if __name__ == "__main__":
             exit(1)
         # Regression Comparison
         elif model == Models.SimpleRegression:
-            simple_regression_test(x_train, y_train)
+            simple_regression_test(x_test, y_test)
         elif model == Models.SomewhatComplexRegression:
-            somewhat_complex_regression_test(x_train, y_train)
+            somewhat_complex_regression_test(x_test, y_test)
         elif model == Models.ComplexRegression:
-            complex_regression_test(x_train, y_train)
+            complex_regression_test(x_test, y_test)
         # Classification Comparison
         elif model == Models.SimpleClassification:
-            simple_classification_test(x_train, y_train)
+            simple_classification_test(x_test, y_test)
         elif model == Models.SomewhatComplexClassification:
-            somewhat_complex_classification_test(x_train, y_train)
+            somewhat_complex_classification_test(x_test, y_test)
         elif model == Models.ComplexClassification:
-            complex_classification_test(x_train, y_train)
+            complex_classification_test(x_test, y_test)
         elif model == Models.ScaledSquaredModel:
             scaled_squared_test(x_test, y_test)

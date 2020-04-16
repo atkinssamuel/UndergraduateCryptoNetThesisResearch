@@ -1,0 +1,2 @@
+### Directory Guide:
+When cloning this repository initially, make sure to create a /Dataset folder for each dataset. This folder must contain the files corresponding to that particular dataset. Further, create empty /NumpyDataset directories for each dataset. Finally, run the appropriate import function in the "data_importing.py" file. This will import the dataset from the /Dataset folder into the /NumpyDataset folder.  

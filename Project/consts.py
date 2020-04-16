@@ -22,10 +22,10 @@ class Models:
     ComplexClassification = 15
 
 
-model = Models.SimpleRegression
+model = Models.SomewhatComplexRegression
 train_flag = 0
-encrypted_flag = 1
-checkpoint_file_number = 60
+encrypted_flag = 0
+checkpoint_file_number = 65
 
 
 if model == Models.WorkingModelEncrypted:
@@ -175,9 +175,9 @@ class EncryptionParameters:
 
 class TrainingParameters:
     learning_rate = 0.001
-    num_epochs = 70
+    num_epochs = 151
     num_models = 100
-    batch_size = 64
+    batch_size = 512
     checkpoint_frequency = 5
     incomplete_checkpoint_file_location = checkpoint_dir + model_type + "_" + model_name + "_Epoch_"
     training_dataset_percentage = 100
@@ -201,4 +201,4 @@ class PlottingParameters:
     plot_training_outputs = False
     plot_training_loss = True
     plot_testing_outputs = True
-    testing_output_plot_percentage = 0.05
+    testing_output_plot_percentage = 0.3
