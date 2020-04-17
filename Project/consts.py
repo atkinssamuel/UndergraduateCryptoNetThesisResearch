@@ -14,18 +14,26 @@ class Models:
     StructureThreeLayersSigmoid = 7
     StructureThreeLayersSquared = 8
     ScaledSquaredModel = 9
-    SimpleRegression = 10
-    SomewhatComplexRegression = 11
-    ComplexRegression = 12
-    SimpleClassification = 13
-    SomewhatComplexClassification = 14
-    ComplexClassification = 15
+    RegressionOneLayer = 10
+    RegressionOneLayerPlaintext = 11
+    RegressionTwoLayers = 12
+    RegressionTwoLayersPlaintext = 13
+    RegressionThreeLayers = 14
+    RegressionThreeLayersPlaintext = 15
+    SimpleClassification = 16
+    SomewhatComplexClassification = 17
+    ComplexClassification = 18
 
 
-model = Models.SomewhatComplexRegression
-train_flag = 0
-encrypted_flag = 0
-checkpoint_file_number = 65
+model = Models.RegressionTwoLayers
+train_flag = 1
+encrypted_flag = 1
+
+force_checkpoint = 0
+checkpoint_file_number = 535
+epochs = 1000
+batch_size = 64
+learning_rate = 0.001
 
 
 if model == Models.WorkingModelEncrypted:
@@ -98,23 +106,44 @@ elif model == Models.ScaledSquaredModel:
     plot_x_label = "Data Index"
     plot_y_label = "Housing Price in USD"
     base_dir = "ActivationLayerResearch/"
-elif model == Models.SimpleRegression:
-    model_dir = "Models/SimpleRegression/"
-    model_name = "SimpleRegression"
+elif model == Models.RegressionOneLayer:
+    model_dir = "Models/RegressionOneLayer/"
+    model_name = "RegressionOneLayer"
     model_type = "Regression"
     plot_x_label = "Data Index"
     plot_y_label = "Year Song Released"
     base_dir = "PerformanceComparison/Regression/"
-elif model == Models.SomewhatComplexRegression:
-    model_dir = "Models/SomewhatComplexRegression/"
-    model_name = "SomewhatComplexRegression"
+elif model == Models.RegressionOneLayerPlaintext:
+    model_dir = "Models/RegressionOneLayerPlaintext/"
+    model_name = "RegressionOneLayerPlaintext"
     model_type = "Regression"
     plot_x_label = "Data Index"
     plot_y_label = "Year Song Released"
     base_dir = "PerformanceComparison/Regression/"
-elif model == Models.ComplexRegression:
-    model_dir = "Models/ComplexRegression/"
-    model_name = "ComplexRegression"
+elif model == Models.RegressionTwoLayers:
+    model_dir = "Models/RegressionTwoLayers/"
+    model_name = "RegressionTwoLayers"
+    model_type = "Regression"
+    plot_x_label = "Data Index"
+    plot_y_label = "Year Song Released"
+    base_dir = "PerformanceComparison/Regression/"
+elif model == Models.RegressionTwoLayersPlaintext:
+    model_dir = "Models/RegressionTwoLayersPlaintext/"
+    model_name = "RegressionTwoLayersPlaintext"
+    model_type = "Regression"
+    plot_x_label = "Data Index"
+    plot_y_label = "Year Song Released"
+    base_dir = "PerformanceComparison/Regression/"
+elif model == Models.RegressionThreeLayers:
+    model_dir = "Models/RegressionThreeLayers/"
+    model_name = "RegressionThreeLayers"
+    model_type = "Regression"
+    plot_x_label = "Data Index"
+    plot_y_label = "Year Song Released"
+    base_dir = "PerformanceComparison/Regression/"
+elif model == Models.RegressionThreeLayersPlaintext:
+    model_dir = "Models/RegressionThreeLayersPlaintext/"
+    model_name = "RegressionThreeLayersPlaintext"
     model_type = "Regression"
     plot_x_label = "Data Index"
     plot_y_label = "Year Song Released"
@@ -174,10 +203,10 @@ class EncryptionParameters:
     config = encryption_config(backend=backend, encryption_parameters=encryption_parameters)
 
 class TrainingParameters:
-    learning_rate = 0.001
-    num_epochs = 151
+    learning_rate = learning_rate
+    num_epochs = epochs
     num_models = 100
-    batch_size = 512
+    batch_size = batch_size
     checkpoint_frequency = 5
     incomplete_checkpoint_file_location = checkpoint_dir + model_type + "_" + model_name + "_Epoch_"
     training_dataset_percentage = 100
