@@ -50,7 +50,31 @@ def analyze_year_prediction():
     plt.grid()
     plt.show()
 
+
     return
 
+
+def analyze_mnist_dataset():
+    (x_train, y_train), (x_valid, y_valid), (x_test, y_test) = load_MNIST()
+
+    print(f"Total Dataset Length = {x_train.shape[0] + x_valid.shape[0] + x_test.shape[0]}")
+    print(f"Length of Training Data = {x_train.shape[0]}")
+    print(f"Length of Validation Data = {x_valid.shape[0]}")
+    print(f"Length of Testing Data = {x_test.shape[0]}")
+    print(f"Number of Data Features = {x_train.shape[1]}")
+    y_total = np.vstack((y_test, np.vstack((y_train, y_valid))))
+    print(f"Mean target value = {np.average(y_total)}")
+    print(f"Median target value = {np.median(y_total)}")
+    print(0.15 * 31000)
+    print(0.7*31000)
+    i = 22
+    i_sample = x_train[i].reshape((28, 28))
+    plt.imshow(i_sample)
+    plt.title("Dataset Input with Label 9")
+    plt.set_cmap("Greys")
+    plt.show()
+    return
+
+
 if __name__ == "__main__":
-    analyze_year_prediction()
+    analyze_mnist_dataset()

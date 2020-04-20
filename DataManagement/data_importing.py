@@ -120,5 +120,5 @@ def import_year_prediction():
     return
 
 if __name__ == "__main__":
-    import_year_prediction()
+    import_MNIST()
 
