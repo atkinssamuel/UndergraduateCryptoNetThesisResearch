@@ -1,29 +1,4 @@
 from Project.consts import *
-# ActivationLayerResearchImports:
-from ActivationLayerResearch.Models.WorkingModelEncrypted.working_model_train \
-    import working_model_encrypted_train
-from ActivationLayerResearch.Models.WorkingModelPlaintext.working_model_plaintext_train \
-    import working_model_plaintext_train
-from ActivationLayerResearch.Models.LayerWidthInvestigation.layer_width_investigation_train \
-    import layer_width_investigation_train
-from ActivationLayerResearch.Models.WorkingModelEncrypted.working_model_test import \
-    working_model_encrypted_test
-from ActivationLayerResearch.Models.WorkingModelPlaintext.working_model_plaintext_test \
-    import working_model_plaintext_test
-from ActivationLayerResearch.Models.StructureInvestigation.Structures.one_layer_train_sigmoid import \
-    one_layer_train_sigmoid
-from ActivationLayerResearch.Models.StructureInvestigation.Structures.one_layer_train_squared import \
-    one_layer_train_squared
-from ActivationLayerResearch.Models.StructureInvestigation.Structures.two_layers_train_sigmoid import \
-    two_layers_train_sigmoid
-from ActivationLayerResearch.Models.StructureInvestigation.Structures.two_layers_train_squared import \
-    two_layers_train_squared
-from ActivationLayerResearch.Models.StructureInvestigation.Structures.three_layers_train_sigmoid import \
-    three_layers_train_sigmoid
-from ActivationLayerResearch.Models.StructureInvestigation.Structures.three_layers_train_squared import \
-    three_layers_train_squared
-from ActivationLayerResearch.Models.ScaledSquared.scaled_squared_train import scaled_squared_train
-from ActivationLayerResearch.Models.ScaledSquared.scaled_squared_test import scaled_squared_test
 # Baseline Timing:
 from BaselineTiming.Models.Encrypted.encrypted_train import encrypted_train
 from BaselineTiming.Models.Encrypted.encrypted_test import encrypted_test
@@ -94,32 +69,8 @@ if __name__ == "__main__":
             test_percentage=TestingParameters.testing_dataset_percentage)
 
     if train_flag:
-        # Simple Working Models - Boston Housing Dataset
-        if model == Models.WorkingModelEncrypted:
-            working_model_encrypted_train(x_train, y_train)
-        elif model == Models.WorkingModelPlaintext:
-            working_model_plaintext_train(x_train, y_train)
-        # Layer Width Investigation - Boston Housing Dataset
-        elif model == Models.LayerWidthInvestigation:
-            layer_width_investigation_train(x_train, y_train)
-        # Structure Investigation - Boston Housing Dataset
-        elif model == Models.StructureOneLayerSigmoid:
-            one_layer_train_sigmoid(x_train, y_train)
-        elif model == Models.StructureOneLayerSquared:
-            one_layer_train_squared(x_train, y_train)
-        elif model == Models.StructureTwoLayersSigmoid:
-            two_layers_train_sigmoid(x_train, y_train)
-        elif model == Models.StructureTwoLayersSquared:
-            two_layers_train_squared(x_train, y_train)
-        elif model == Models.StructureThreeLayersSigmoid:
-            three_layers_train_sigmoid(x_train, y_train)
-        elif model == Models.StructureThreeLayersSquared:
-            three_layers_train_squared(x_train, y_train)
-        # Scaled Squared Model - Boston Housing Dataset
-        elif model == Models.ScaledSquaredModel:
-            scaled_squared_train(x_train, y_train)
         # Basline Timing Analysis - Boston Housing Dataset
-        elif model == Models.EncryptedTiming:
+        if model == Models.EncryptedTiming:
             encrypted_train(x_train, y_train)
         elif model == Models.PlaintextTiming:
             plaintext_train(x_train, y_train)
@@ -144,18 +95,8 @@ if __name__ == "__main__":
         elif model == Models.ComplexClassification:
             complex_classification_train(x_train, y_train)
     else:
-        if model == Models.WorkingModelEncrypted:
-            working_model_encrypted_test(x_test, y_test)
-        elif model == Models.WorkingModelPlaintext:
-            working_model_plaintext_test(x_test, y_test)
-        elif model == Models.LayerWidthInvestigation:
-            print("No test file for LayerWidthInvestigation.")
-            exit(1)
-        elif Models.StructureOneLayerSigmoid <= model <= Models.StructureThreeLayersSquared:
-            print("No test files for Structure Investigation.")
-            exit(1)
         # Baseline Timing
-        elif model == Models.EncryptedTiming:
+        if model == Models.EncryptedTiming:
             encrypted_test(x_test, y_test)
         elif model == Models.PlaintextTiming:
             plaintext_test(x_test, y_test)
@@ -179,5 +120,3 @@ if __name__ == "__main__":
             somewhat_complex_classification_test(x_test, y_test)
         elif model == Models.ComplexClassification:
             complex_classification_test(x_test, y_test)
-        elif model == Models.ScaledSquaredModel:
-            scaled_squared_test(x_test, y_test)
