@@ -32,7 +32,7 @@ train_flag = 0
 encrypted_flag = 0
 
 force_checkpoint = 0
-checkpoint_file_number = 990
+checkpoint_file_number = 650
 epochs = 1000
 batch_size = 64
 learning_rate = 0.001
@@ -246,4 +246,4 @@ class PlottingParameters:
     plot_training_outputs = False
     plot_training_loss = True
     plot_testing_outputs = True
-    testing_output_plot_percentage = 100
+    testing_output_plot_percentage = 20

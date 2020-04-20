@@ -12,6 +12,7 @@ def plot_loss(losses, validation_losses, title, x_label, y_label, save_directory
     plt.xlabel(x_label)
     plt.ylabel(y_label)
     plt.legend()
+    plt.grid()
     if save_directory != "":
         plt.savefig(save_directory + save_title)
     if show:
@@ -26,6 +27,7 @@ def plot_regression_outputs(predictions, targets, title, x_label, y_label, save_
     plt.ylabel(y_label)
     plt.plot(predictions, "b", label="Prediction")
     plt.plot(targets, "g", label="Target")
+    plt.grid()
     plt.legend()
     if save_directory != "":
         plt.savefig(save_directory + save_title)
