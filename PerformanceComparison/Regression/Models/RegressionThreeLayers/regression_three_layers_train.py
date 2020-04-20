@@ -15,10 +15,10 @@ def regression_three_layers_train(x_train, y_train, x_valid, y_valid):
     output_dimension = y_train.shape[1]
 
     l1_scaling, l2_scaling, l3_scaling = 0.00000001, 0.00000001, 0.00000001
-    layer_complexity_growth = 1.5
+    layer_complexity_growth = 2.5
     hidden_layer_1 = round(input_dimension * layer_complexity_growth)
     hidden_layer_2 = round(hidden_layer_1 * layer_complexity_growth)
-    hidden_layer_3 = round(hidden_layer_2 * layer_complexity_growth)
+    hidden_layer_3 = round(hidden_layer_2)
     output_layer = 1
 
     # Placeholder for batch of inputs:

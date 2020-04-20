@@ -1,72 +1,72 @@
-One Layer Time Trials:,Time to Train 250 Batches(s):,Batch Size:,,,
-1,68.891,64,,,
-2,74.461,64,,,
-3,72.277,64,,,
-4,69.691,64,,,
-5,77.388,64,,,
-One Layer Performance:,Number of Epochs to Train:,Testing Loss:,Testing Accuracy:,,Time to Test (s):
-,320,6599646.5,80.97%,1,74.538
-,,,,2,80.355
-,,,,3,82.192
-,,,,4,79.49
-,,,,5,75.227
-One Layer Plaintext Time Trials:,Time to Train 250 Batches(s):,Batch Size:,,,
-1,0.203,64,,,
-2,0.188,64,,,
-3,0.184,64,,,
-4,0.17,64,,,
-5,0.192,64,,,
-One Layer Plaintext Performance:,Number of Epochs to Train:,Testing Loss:,Testing Accuracy:,,Time to Test (s):
-,65,7841881,80.43%,1,0.121
-,,,,2,0.123
-,,,,3,0.129
-,,,,4,0.128
-,,,,5,0.132
-Two Layers Time Trials:,Time to Train 250 Batches(s):,Batch Size:,,,
-1,393.2,64,,,
-2,-,64,,,
-3,-,64,,,
-4,-,64,,,
-5,-,64,,,
-Two Layers Performance:,Number of Epochs to Train:,Testing Loss:,Testing Accuracy:,,Time to Test (s):
-,535,6577615,81.55%,1,547.073
-,,,,2,-
-,,,,3,-
-,,,,4,-
-,,,,5,-
-Two Layers Plaintext Time Trials:,Time to Train 250 Batches(s):,Batch Size:,,,
-1,0.233,64,,,
-2,0.219,64,,,
-3,0.239,64,,,
-4,0.24,64,,,
-5,0.232,64,,,
-Two Layers Plaintext Performance:,Number of Epochs to Train:,Testing Loss:,Testing Accuracy:,,Time to Test (s):
-,245,7124668,80.42%,1,0.123
-,,,,2,0.162
-,,,,3,0.133
-,,,,4,0.148
-,,,,5,0.133
-Three Layers Time Trials:,Time to Train 250 Batches(s):,Batch Size:,,,
-1,,64,,,
-2,,64,,,
-3,,64,,,
-4,,64,,,
-5,,64,,,
-Three Layers Performance:,Number of Epochs to Train:,Testing Loss:,Testing Accuracy:,,Time to Test (s):
-,,,,1,
-,,,,2,
-,,,,3,
-,,,,4,
-,,,,5,
-Three Layers Plaintext Time Trials:,Time to Train 250 Batches(s):,Batch Size:,,,
-1,,64,,,
-2,,64,,,
-3,,64,,,
-4,,64,,,
-5,,64,,,
-Three Layers Plaintext Performance:,Number of Epochs to Train:,Testing Loss:,Testing Accuracy:,,Time to Test (s):
-,,,,1,
-,,,,2,
-,,,,3,
-,,,,4,
-,,,,5,
+One Layer Time Trials:,Time to Train 250 Batches(s):,Batch Size:,,
+1,68.891,64,,
+2,74.461,64,,
+3,72.277,64,,
+4,69.691,64,,
+5,77.388,64,,
+One Layer Performance:,Testing Loss:,Testing Accuracy:,Testing Trials:,Time to Test (s):
+,6599646.5,81.0%,1,74.538
+,,,2,80.355
+,,,3,82.192
+,,,4,79.49
+,,,5,75.227
+One Layer Plaintext Time Trials:,Time to Train 250 Batches(s):,Batch Size:,,
+1,0.203,64,,
+2,0.188,64,,
+3,0.184,64,,
+4,0.17,64,,
+5,0.192,64,,
+One Layer Plaintext Performance:,Testing Loss:,Testing Accuracy:,Testing Trials:,Time to Test (s):
+,7841881,80.43%,1,0.121
+,,,2,0.123
+,,,3,0.129
+,,,4,0.128
+,,,5,0.132
+Two Layers Time Trials:,Time to Train 250 Batches(s):,Batch Size:,,
+1,393.2,64,,
+2,-,64,,
+3,-,64,,
+4,-,64,,
+5,-,64,,
+Two Layers Performance:,Testing Loss:,Testing Accuracy:,Testing Trials:,Time to Test (s):
+,6577615,81.6%,1,547.073
+,,,2,-
+,,,3,-
+,,,4,-
+,,,5,-
+Two Layers Plaintext Time Trials:,Time to Train 250 Batches(s):,Batch Size:,,
+1,0.233,64,,
+2,0.219,64,,
+3,0.239,64,,
+4,0.24,64,,
+5,0.232,64,,
+Two Layers Plaintext Performance:,Testing Loss:,Testing Accuracy:,Testing Trials:,Time to Test (s):
+,7124668,80.42%,1,0.123
+,,,2,0.162
+,,,3,0.133
+,,,4,0.148
+,,,5,0.133
+Three Layers Time Trials:,Time to Train 250 Batches(s):,Batch Size:,,
+1,178.54,64,,
+2,,64,,
+3,,64,,
+4,,64,,
+5,,64,,
+Three Layers Performance:,Testing Loss:,Testing Accuracy:,Testing Trials:,Time to Test (s):
+,6419452.7,81.7%,1,
+,,,2,
+,,,3,
+,,,4,
+,,,5,
+Three Layers Plaintext Time Trials:,Time to Train 250 Batches(s):,Batch Size:,,
+1,,64,,
+2,,64,,
+3,,64,,
+4,,64,,
+5,,64,,
+Three Layers Plaintext Performance:,Testing Loss:,Testing Accuracy:,Testing Trials:,Time to Test (s):
+,7034911,80.46%,1,
+,,,2,
+,,,3,
+,,,4,
+,,,5,

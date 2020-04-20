@@ -120,5 +120,5 @@ def import_year_prediction():
     return
 
 if __name__ == "__main__":
-    import_boston_housing()
+    import_year_prediction()
 

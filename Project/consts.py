@@ -4,111 +4,31 @@ start_time = time.time()
 
 
 class Models:
-    WorkingModelEncrypted = 0
-    WorkingModelPlaintext = 1
-    LayerWidthInvestigation = 2
-    StructureOneLayerSigmoid = 3
-    StructureOneLayerSquared = 4
-    StructureTwoLayersSigmoid = 5
-    StructureTwoLayersSquared = 6
-    StructureThreeLayersSigmoid = 7
-    StructureThreeLayersSquared = 8
-    ScaledSquaredModel = 9
-    EncryptedTiming = 10
-    PlaintextTiming= 11
-    RegressionOneLayer = 12
-    RegressionOneLayerPlaintext = 13
-    RegressionTwoLayers = 14
-    RegressionTwoLayersPlaintext = 15
-    RegressionThreeLayers = 16
-    RegressionThreeLayersPlaintext = 17
-    SimpleClassification = 18
-    SomewhatComplexClassification = 19
-    ComplexClassification = 20
+    EncryptedTiming = 1
+    PlaintextTiming= 2
+    RegressionOneLayer = 3
+    RegressionOneLayerPlaintext = 4
+    RegressionTwoLayers = 5
+    RegressionTwoLayersPlaintext = 6
+    RegressionThreeLayers = 7
+    RegressionThreeLayersPlaintext = 8
+    SimpleClassification = 9
+    SomewhatComplexClassification = 10
+    ComplexClassification = 11
 
 
-model = Models.RegressionThreeLayers
+model = Models.RegressionTwoLayers
 train_flag = 1
-encrypted_flag = 0
+encrypted_flag = 1
 
 force_checkpoint = 0
-checkpoint_file_number = 650
+checkpoint_file_number = 105
 epochs = 1000
 batch_size = 64
-learning_rate = 0.0005
+learning_rate = 0.005
 
 
-if model == Models.WorkingModelEncrypted:
-    model_dir = "Models/WorkingModelEncrypted/"
-    model_name = "WorkingModelEncrypted"
-    model_type = "Regression"
-    plot_x_label = "Data Index"
-    plot_y_label = "Housing Price in 1000's of USD"
-    base_dir = "ActivationLayerResearch/"
-elif model == Models.WorkingModelPlaintext:
-    model_dir = "Models/WorkingModelPlaintext/"
-    model_name = "WorkingModelPlaintext"
-    model_type = "Regression"
-    plot_x_label = "Data Index"
-    plot_y_label = "Housing Price in 1000's of USD"
-    base_dir = "ActivationLayerResearch/"
-elif model == Models.LayerWidthInvestigation:
-    model_dir = "Models/LayerWidthInvestigation/"
-    model_name = "LayerWidthInvestigation"
-    model_type = "Regression"
-    plot_x_label = "Data Index"
-    plot_y_label = "Housing Price in 1000's of USD"
-    base_dir = "ActivationLayerResearch/"
-elif model == Models.StructureOneLayerSigmoid:
-    model_dir = "Models/StructureInvestigation/"
-    model_name = "StructureOneLayerSigmoid"
-    model_type = "Regression"
-    plot_x_label = "Data Index"
-    plot_y_label = "Housing Price in 1000's of USD"
-    base_dir = "ActivationLayerResearch/"
-elif model == Models.StructureOneLayerSquared:
-    model_dir = "Models/StructureInvestigation/"
-    model_name = "StructureOneLayerSquared"
-    model_type = "Regression"
-    plot_x_label = "Data Index"
-    plot_y_label = "Housing Price in 1000's of USD"
-    base_dir = "ActivationLayerResearch/"
-elif model == Models.StructureTwoLayersSigmoid:
-    model_dir = "Models/StructureInvestigation/"
-    model_name = "StructureTwoLayersSigmoid"
-    model_type = "Regression"
-    plot_x_label = "Data Index"
-    plot_y_label = "Housing Price in 1000's of USD"
-    base_dir = "ActivationLayerResearch/"
-elif model == Models.StructureTwoLayersSquared:
-    model_dir = "Models/StructureInvestigation/"
-    model_name = "StructureTwoLayersSquared"
-    model_type = "Regression"
-    plot_x_label = "Data Index"
-    plot_y_label = "Housing Price in 1000's of USD"
-    base_dir = "ActivationLayerResearch/"
-elif model == Models.StructureThreeLayersSigmoid:
-    model_dir = "Models/StructureInvestigation/"
-    model_name = "StructureThreeLayersSigmoid"
-    model_type = "Regression"
-    plot_x_label = "Data Index"
-    plot_y_label = "Housing Price in 1000's of USD"
-    base_dir = "ActivationLayerResearch/"
-elif model == Models.StructureThreeLayersSquared:
-    model_dir = "Models/StructureInvestigation/"
-    model_name = "StructureThreeLayersSquared"
-    model_type = "Regression"
-    plot_x_label = "Data Index"
-    plot_y_label = "Housing Price in 1000's of USD"
-    base_dir = "ActivationLayerResearch/"
-elif model == Models.ScaledSquaredModel:
-    model_dir = "Models/ScaledSquared/"
-    model_name = "ScaledSquared"
-    model_type = "Regression"
-    plot_x_label = "Data Index"
-    plot_y_label = "Housing Price in 1000's of USD"
-    base_dir = "ActivationLayerResearch/"
-elif model == Models.EncryptedTiming:
+if model == Models.EncryptedTiming:
     model_dir = "Models/Encrypted/"
     model_name = "EncryptedTiming"
     model_type = "Regression"

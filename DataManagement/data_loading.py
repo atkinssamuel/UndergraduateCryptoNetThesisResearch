@@ -2,7 +2,7 @@ import numpy as np
 from DataManagement.data_constants import *
 
 
-def load_MNIST(train_percentage=100, test_percentage=100):
+def load_MNIST(train_percentage=100, valid_percentage=100, test_percentage=100):
     image_dim = 28
     # num_categories = 10
 
@@ -14,15 +14,29 @@ def load_MNIST(train_percentage=100, test_percentage=100):
     x_train = x_train.reshape((np.shape(x_train)[0], image_dim, image_dim, 1))
     x_test = x_test.reshape((np.shape(x_test)[0], image_dim, image_dim, 1))
 
-    train_count = x_train.shape[0]
+    initial_train_count = x_train.shape[0]
     test_count = x_test.shape[0]
-    adjusted_train_count = round(train_percentage/100 * train_count)
-    adjusted_test_count = round(test_percentage/100 * test_count)
 
-    (x_train, y_train), (x_test, y_test) = (x_train[:adjusted_train_count], y_train[:adjusted_train_count]), \
-                                           (x_test[:adjusted_test_count], y_test[:adjusted_test_count])
+    valid_length = round(0.15 * (initial_train_count + test_count))
 
-    return (x_train, y_train), (x_test, y_test)
+    x_valid = x_train[-valid_length:, :]
+    y_valid = y_train[-valid_length, :]
+    x_train = x_train[:valid_length, :]
+    y_train = y_train[:valid_length, :]
+
+    train_count = x_train.shape[0]
+    valid_count = x_valid.shape[0]
+
+    adjusted_train_count = round(train_percentage / 100 * train_count)
+    adjusted_valid_count = round(valid_percentage / 100 * valid_count)
+    adjusted_test_count = round(test_percentage / 100 * test_count)
+
+    (x_train, y_train), (x_valid, y_valid), (x_test, y_test) = \
+        (x_train[:adjusted_train_count], y_train[:adjusted_train_count]), \
+        (x_valid[:adjusted_valid_count], y_valid[:adjusted_valid_count]), \
+        (x_test[:adjusted_test_count], y_test[:adjusted_test_count])
+
+    return (x_train, y_train), (x_valid, y_valid), (x_test, y_test)
 
 
 def load_MNIST_flat(train_percentage=100, test_percentage=100):
@@ -33,8 +47,8 @@ def load_MNIST_flat(train_percentage=100, test_percentage=100):
 
     train_count = x_train.shape[0]
     test_count = x_test.shape[0]
-    adjusted_train_count = round(train_percentage/100 * train_count)
-    adjusted_test_count = round(test_percentage/100 * test_count)
+    adjusted_train_count = round(train_percentage / 100 * train_count)
+    adjusted_test_count = round(test_percentage / 100 * test_count)
 
     (x_train, y_train), (x_test, y_test) = (x_train[:adjusted_train_count], y_train[:adjusted_train_count]), \
                                            (x_test[:adjusted_test_count], y_test[:adjusted_test_count])
@@ -50,8 +64,8 @@ def load_cifar100(train_percentage=100, test_percentage=100):
 
     train_count = x_train.shape[0]
     test_count = x_test.shape[0]
-    adjusted_train_count = round(train_percentage/100 * train_count)
-    adjusted_test_count = round(test_percentage/100 * test_count)
+    adjusted_train_count = round(train_percentage / 100 * train_count)
+    adjusted_test_count = round(test_percentage / 100 * test_count)
 
     (x_train, y_train), (x_test, y_test) = (x_train[:adjusted_train_count], y_train[:adjusted_train_count]), \
                                            (x_test[:adjusted_test_count], y_test[:adjusted_test_count])
@@ -134,4 +148,3 @@ def load_year_prediction(train_percentage=100, validation_percentage=100, test_p
         (x_valid[:adjusted_valid_count], y_valid[:adjusted_valid_count]), \
         (x_test[:adjusted_test_count], y_test[:adjusted_test_count])
     return (x_train, y_train), (x_valid, y_valid), (x_test, y_test)
-

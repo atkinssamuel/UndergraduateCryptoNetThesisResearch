@@ -11,38 +11,39 @@ def complex_classification_train(x_train, y_train):
     print("complex_classification_train")
     # Parameters:
     # Base Params:
+    input_depth = 1
     input_dimension = x_train.shape[1]
     output_dimension = y_train.shape[1]
 
     layer_complexity_growth = 2
-    l1_scaling, l2_scaling, l3_scaling = 0.001, 0.001, 0.001
-    hidden_layer_1 = 32
-    hidden_layer_2 = hidden_layer_1 * layer_complexity_growth
-    hidden_layer_3 = hidden_layer_2 * layer_complexity_growth
-    output_layer = 1
+    l1_scaling, l2_scaling = 0.001, 0.001
+    layer_1_depth = 6
+    k1_width = 5
+    stride_1 = 1
+    padding_1 = "SAME"
+    conv_output_nodes = 14 * 14 * 6
+    hidden_layer_1 = round(conv_output_nodes * layer_complexity_growth)
+    hidden_layer_2 = round(hidden_layer_1 * layer_complexity_growth)
+    output_layer = 10
 
     # Placeholder for batch of inputs:
     x = tf.placeholder(tf.float32, [None, input_dimension])
 
     # Layer 1 Variables:
-    W1 = tf.Variable(tf.truncated_normal([input_dimension, hidden_layer_1], stddev=0.15))
-    b1 = tf.Variable(tf.zeros([hidden_layer_1]))
-    y1 = l1_scaling * tf.math.square(tf.matmul(x, W1) + b1)
+    k1 = tf.Variable(tf.random_normal([k1_width, k1_width, input_depth, layer_1_depth]))
+    y1 = tf.math.square(tf.nn.conv2d(x, k1, [stride_1], padding_1))
+    y1 = l1_scaling * tf.nn.pool(y1, [2, 2], pooling_type="MEAN", padding="SAME", strides=[2, 2])
+    y1 = tf.reshape(y1, [-1, conv_output_nodes])
 
     # Layer 2 Variables:
     W2 = tf.Variable(tf.truncated_normal([hidden_layer_1, hidden_layer_2], stddev=0.15))
     b2 = tf.Variable(tf.zeros([hidden_layer_2]))
     y2 = l2_scaling * tf.math.square(tf.matmul(y1, W2) + b2)
 
-    # Layer 3 Variables:
-    W3 = tf.Variable(tf.truncated_normal([hidden_layer_2, hidden_layer_3], stddev=0.15))
-    b3 = tf.Variable(tf.zeros([hidden_layer_3]))
-    y3 = l3_scaling * tf.math.square(tf.matmul(y2, W3) + b3)
-
     # Output Layer Variables:
-    W4 = tf.Variable(tf.truncated_normal([hidden_layer_3, output_layer], stddev=0.15))
-    b4 = tf.Variable(tf.zeros([output_layer]))
-    y = tf.matmul(y3, W4) + b4
+    W3 = tf.Variable(tf.truncated_normal([hidden_layer_2, output_layer], stddev=0.15))
+    b3 = tf.Variable(tf.zeros([output_layer]))
+    y = tf.matmul(y2, W3) + b3
 
     # Placeholder for batch of targets:
     y_ = tf.placeholder(tf.float32, [None, output_dimension])

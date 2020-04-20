@@ -13,7 +13,7 @@ def regression_three_layers_test(x_test, y_test):
     layer_complexity_growth = 1.5
     hidden_layer_1 = round(input_dimension * layer_complexity_growth)
     hidden_layer_2 = round(hidden_layer_1 * layer_complexity_growth)
-    hidden_layer_3 = round(hidden_layer_2 * layer_complexity_growth)
+    hidden_layer_3 = round(hidden_layer_2 * 0.5)
     output_layer = 1
 
     # Placeholder for batch of inputs:

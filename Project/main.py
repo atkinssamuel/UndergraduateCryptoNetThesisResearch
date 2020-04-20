@@ -46,26 +46,22 @@ from DataManagement.data_loading import *
 
 
 if __name__ == "__main__":
-    if Models.WorkingModelEncrypted <= model <= Models.ScaledSquaredModel:
-        (x_train, y_train), (x_test, y_test) = load_boston_housing(
-            train_percentage=TrainingParameters.training_dataset_percentage,
-            test_percentage=TestingParameters.testing_dataset_percentage)
-    elif Models.EncryptedTiming <= model <= Models.PlaintextTiming:
+    if Models.EncryptedTiming <= model <= Models.PlaintextTiming:
         (x_train, y_train), (x_test, y_test) = load_boston_housing(
             train_percentage=TrainingParameters.training_dataset_percentage,
             test_percentage=TestingParameters.testing_dataset_percentage)
         # Using the entire dataset for testing:
         x_test = np.vstack((x_train, x_test))
         y_test = np.vstack((y_train, y_test))
-
     elif Models.RegressionOneLayer <= model <= Models.RegressionThreeLayers:
         (x_train, y_train), (x_valid, y_valid), (x_test, y_test) = load_year_prediction(
             train_percentage=TrainingParameters.training_dataset_percentage,
             validation_percentage=TrainingParameters.valid_dataset_percentage,
             test_percentage=TestingParameters.testing_dataset_percentage)
     elif Models.SimpleClassification <= model <= Models.ComplexClassification:
-        (x_train, y_train), (x_test, y_test) = load_MNIST(
+        (x_train, y_train), (x_valid, y_valid), (x_test, y_test) = load_MNIST(
             train_percentage=TrainingParameters.training_dataset_percentage,
+            validation_percentage=TrainingParameters.valid_dataset_percentage,
             test_percentage=TestingParameters.testing_dataset_percentage)
 
     if train_flag:
@@ -89,7 +85,7 @@ if __name__ == "__main__":
             regression_three_layers_plaintext_train(x_train, y_train, x_valid, y_valid)
         # Classification Comparison - MNIST Dataset
         elif model == Models.SimpleClassification:
-            simple_classification_train(x_train, y_train)
+            simple_classification_train(x_train, y_train, x_valid, y_valid)
         elif model == Models.SomewhatComplexClassification:
             somewhat_complex_classification_train(x_train, y_train)
         elif model == Models.ComplexClassification:
