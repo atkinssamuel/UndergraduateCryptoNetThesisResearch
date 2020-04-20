@@ -24,6 +24,11 @@ from ActivationLayerResearch.Models.StructureInvestigation.Structures.three_laye
     three_layers_train_squared
 from ActivationLayerResearch.Models.ScaledSquared.scaled_squared_train import scaled_squared_train
 from ActivationLayerResearch.Models.ScaledSquared.scaled_squared_test import scaled_squared_test
+# Baseline Timing:
+from BaselineTiming.Models.Encrypted.encrypted_train import encrypted_train
+from BaselineTiming.Models.Encrypted.encrypted_test import encrypted_test
+from BaselineTiming.Models.Plaintext.plaintext_train import plaintext_train
+from BaselineTiming.Models.Plaintext.plaintext_test import plaintext_test
 # Performance Comparison Imports:
 # One Layer:
 from PerformanceComparison.Regression.Models.RegressionOneLayer.regression_one_layer_train \
@@ -70,6 +75,14 @@ if __name__ == "__main__":
         (x_train, y_train), (x_test, y_test) = load_boston_housing(
             train_percentage=TrainingParameters.training_dataset_percentage,
             test_percentage=TestingParameters.testing_dataset_percentage)
+    elif Models.EncryptedTiming <= model <= Models.PlaintextTiming:
+        (x_train, y_train), (x_test, y_test) = load_boston_housing(
+            train_percentage=TrainingParameters.training_dataset_percentage,
+            test_percentage=TestingParameters.testing_dataset_percentage)
+        # Using the entire dataset for testing:
+        x_test = np.vstack((x_train, x_test))
+        y_test = np.vstack((y_train, y_test))
+
     elif Models.RegressionOneLayer <= model <= Models.RegressionThreeLayers:
         (x_train, y_train), (x_valid, y_valid), (x_test, y_test) = load_year_prediction(
             train_percentage=TrainingParameters.training_dataset_percentage,
@@ -105,6 +118,11 @@ if __name__ == "__main__":
         # Scaled Squared Model - Boston Housing Dataset
         elif model == Models.ScaledSquaredModel:
             scaled_squared_train(x_train, y_train)
+        # Basline Timing Analysis - Boston Housing Dataset
+        elif model == Models.EncryptedTiming:
+            encrypted_train(x_train, y_train)
+        elif model == Models.PlaintextTiming:
+            plaintext_train(x_train, y_train)
         # Regression Comparison - Year Prediction Dataset
         elif model == Models.RegressionOneLayer:
             regression_one_layer_train(x_train, y_train, x_valid, y_valid)
@@ -136,6 +154,11 @@ if __name__ == "__main__":
         elif Models.StructureOneLayerSigmoid <= model <= Models.StructureThreeLayersSquared:
             print("No test files for Structure Investigation.")
             exit(1)
+        # Baseline Timing
+        elif model == Models.EncryptedTiming:
+            encrypted_test(x_test, y_test)
+        elif model == Models.PlaintextTiming:
+            plaintext_test(x_test, y_test)
         # Regression Comparison
         elif model == Models.RegressionOneLayer:
             regression_one_layer_test(x_test, y_test)

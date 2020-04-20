@@ -14,23 +14,25 @@ class Models:
     StructureThreeLayersSigmoid = 7
     StructureThreeLayersSquared = 8
     ScaledSquaredModel = 9
-    RegressionOneLayer = 10
-    RegressionOneLayerPlaintext = 11
-    RegressionTwoLayers = 12
-    RegressionTwoLayersPlaintext = 13
-    RegressionThreeLayers = 14
-    RegressionThreeLayersPlaintext = 15
-    SimpleClassification = 16
-    SomewhatComplexClassification = 17
-    ComplexClassification = 18
+    EncryptedTiming = 10
+    PlaintextTiming= 11
+    RegressionOneLayer = 12
+    RegressionOneLayerPlaintext = 13
+    RegressionTwoLayers = 14
+    RegressionTwoLayersPlaintext = 15
+    RegressionThreeLayers = 16
+    RegressionThreeLayersPlaintext = 17
+    SimpleClassification = 18
+    SomewhatComplexClassification = 19
+    ComplexClassification = 20
 
 
-model = Models.RegressionTwoLayers
-train_flag = 1
-encrypted_flag = 1
+model = Models.PlaintextTiming
+train_flag = 0
+encrypted_flag = 0
 
 force_checkpoint = 0
-checkpoint_file_number = 535
+checkpoint_file_number = 990
 epochs = 1000
 batch_size = 64
 learning_rate = 0.001
@@ -41,71 +43,85 @@ if model == Models.WorkingModelEncrypted:
     model_name = "WorkingModelEncrypted"
     model_type = "Regression"
     plot_x_label = "Data Index"
-    plot_y_label = "Housing Price in USD"
+    plot_y_label = "Housing Price in 1000's of USD"
     base_dir = "ActivationLayerResearch/"
 elif model == Models.WorkingModelPlaintext:
     model_dir = "Models/WorkingModelPlaintext/"
     model_name = "WorkingModelPlaintext"
     model_type = "Regression"
     plot_x_label = "Data Index"
-    plot_y_label = "Housing Price in USD"
+    plot_y_label = "Housing Price in 1000's of USD"
     base_dir = "ActivationLayerResearch/"
 elif model == Models.LayerWidthInvestigation:
     model_dir = "Models/LayerWidthInvestigation/"
     model_name = "LayerWidthInvestigation"
     model_type = "Regression"
     plot_x_label = "Data Index"
-    plot_y_label = "Housing Price in USD"
+    plot_y_label = "Housing Price in 1000's of USD"
     base_dir = "ActivationLayerResearch/"
 elif model == Models.StructureOneLayerSigmoid:
     model_dir = "Models/StructureInvestigation/"
     model_name = "StructureOneLayerSigmoid"
     model_type = "Regression"
     plot_x_label = "Data Index"
-    plot_y_label = "Housing Price in USD"
+    plot_y_label = "Housing Price in 1000's of USD"
     base_dir = "ActivationLayerResearch/"
 elif model == Models.StructureOneLayerSquared:
     model_dir = "Models/StructureInvestigation/"
     model_name = "StructureOneLayerSquared"
     model_type = "Regression"
     plot_x_label = "Data Index"
-    plot_y_label = "Housing Price in USD"
+    plot_y_label = "Housing Price in 1000's of USD"
     base_dir = "ActivationLayerResearch/"
 elif model == Models.StructureTwoLayersSigmoid:
     model_dir = "Models/StructureInvestigation/"
     model_name = "StructureTwoLayersSigmoid"
     model_type = "Regression"
     plot_x_label = "Data Index"
-    plot_y_label = "Housing Price in USD"
+    plot_y_label = "Housing Price in 1000's of USD"
     base_dir = "ActivationLayerResearch/"
 elif model == Models.StructureTwoLayersSquared:
     model_dir = "Models/StructureInvestigation/"
     model_name = "StructureTwoLayersSquared"
     model_type = "Regression"
     plot_x_label = "Data Index"
-    plot_y_label = "Housing Price in USD"
+    plot_y_label = "Housing Price in 1000's of USD"
     base_dir = "ActivationLayerResearch/"
 elif model == Models.StructureThreeLayersSigmoid:
     model_dir = "Models/StructureInvestigation/"
     model_name = "StructureThreeLayersSigmoid"
     model_type = "Regression"
     plot_x_label = "Data Index"
-    plot_y_label = "Housing Price in USD"
+    plot_y_label = "Housing Price in 1000's of USD"
     base_dir = "ActivationLayerResearch/"
 elif model == Models.StructureThreeLayersSquared:
     model_dir = "Models/StructureInvestigation/"
     model_name = "StructureThreeLayersSquared"
     model_type = "Regression"
     plot_x_label = "Data Index"
-    plot_y_label = "Housing Price in USD"
+    plot_y_label = "Housing Price in 1000's of USD"
     base_dir = "ActivationLayerResearch/"
 elif model == Models.ScaledSquaredModel:
     model_dir = "Models/ScaledSquared/"
     model_name = "ScaledSquared"
     model_type = "Regression"
     plot_x_label = "Data Index"
-    plot_y_label = "Housing Price in USD"
+    plot_y_label = "Housing Price in 1000's of USD"
     base_dir = "ActivationLayerResearch/"
+elif model == Models.EncryptedTiming:
+    model_dir = "Models/Encrypted/"
+    model_name = "EncryptedTiming"
+    model_type = "Regression"
+    plot_x_label = "Data Index"
+    plot_y_label = "Housing Price in 1000's of USD"
+    base_dir = "BaselineTiming/"
+elif model == Models.PlaintextTiming:
+    model_dir = "Models/Plaintext/"
+    model_name = "PlaintextTiming"
+    model_type = "Regression"
+    plot_x_label = "Data Index"
+    plot_y_label = "Housing Price in 1000's of USD"
+    base_dir = "BaselineTiming/"
 elif model == Models.RegressionOneLayer:
     model_dir = "Models/RegressionOneLayer/"
     model_name = "RegressionOneLayer"
@@ -230,4 +246,4 @@ class PlottingParameters:
     plot_training_outputs = False
     plot_training_loss = True
     plot_testing_outputs = True
-    testing_output_plot_percentage = 0.3
+    testing_output_plot_percentage = 100

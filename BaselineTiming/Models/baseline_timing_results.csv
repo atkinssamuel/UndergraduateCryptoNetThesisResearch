@@ -1,0 +1,14 @@
+Encrypted Model:,,,
+Trial:,Time to Train:,Number of Epochs:,Time to Infer:
+1,26.947,100,0.186
+2,26.392,100,0.212
+3,27.284,100,0.215
+4,29.201,100,0.183
+5,28.243,100,0.185
+Plaintext Model:,,,
+Trial:,Time to Train:,Number of Epochs:,Time to Infer:
+1,0.59,100,0.055
+2,0.585,100,0.066
+3,0.544,100,0.097
+4,0.556,100,0.052
+5,0.546,100,0.052
