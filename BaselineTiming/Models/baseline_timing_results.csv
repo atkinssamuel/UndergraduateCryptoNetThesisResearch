@@ -1,14 +1,14 @@
-Encrypted Model:,,,
-Trial:,Time to Train:,Number of Epochs:,Time to Infer:
-1,26.947,100,0.186
-2,26.392,100,0.212
-3,27.284,100,0.215
-4,29.201,100,0.183
-5,28.243,100,0.185
-Plaintext Model:,,,
-Trial:,Time to Train:,Number of Epochs:,Time to Infer:
-1,0.59,100,0.055
-2,0.585,100,0.066
-3,0.544,100,0.097
-4,0.556,100,0.052
-5,0.546,100,0.052
+Encrypted Model:,,,,,,,,
+Trial:,Time to Train:,Number of Epochs:,Time to Infer:,,Mean Time to Train:,Standard Deviation:,Mean Time to Infer:,Standard Deviation:
+1,26.947,100,0.186,,27.6134,1.113696682,0.1962,0.015865056
+2,26.392,100,0.212,,,,,
+3,27.284,100,0.215,,,,,
+4,29.201,100,0.183,,,,,
+5,28.243,100,0.185,,,,,
+Plaintext Model:,,,,,,,,
+Trial:,Time to Train:,Number of Epochs:,Time to Infer:,,Mean Time to Train:,Standard Deviation:,Mean Time to Infer:,Standard Deviation:
+1,0.59,100,0.055,,0.5642,0.021822007,0.0644,0.019112823
+2,0.585,100,0.066,,,,,
+3,0.544,100,0.097,,,,,
+4,0.556,100,0.052,,,,,
+5,0.546,100,0.052,,,,,

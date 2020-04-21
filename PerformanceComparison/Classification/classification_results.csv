@@ -1,0 +1,24 @@
+Model 1 Time Trials:	Time to Train 250 Batches(s):	Batch Size:		Mean Time to Train: 	Std Dev:	Mean Time to Test:	Std Dev:
+1	86.1	64		83.035	2.511014337	112.9464	3.063664848
+2	79.866	64		Mean Time to Train 250 Batches (s):	Mean Time to Test (s):	Optimal Testing Accuracy:	
+3	84.546	64		83.036 ± 2.511	112.946 ± 3.0637	92.30%	
+4	83.452	64					
+5	81.211	64					
+Model 1 Performance:	Testing Accuracy:	Testing Trials:	Time to Test (s):				
+	92.30%	1	115.611				
+		2	110.784				
+		3	112.132				
+		4	116.642				
+		5	109.563				
+Model 2 Time Trials:	Time to Train 250 Batches(s):	Batch Size:		Mean Time to Train: 	Std Dev:	Mean Time to Test:	Std Dev:
+1	132.44	64		130.9966	2.706293277	318.37246	5.66616646
+2	127.559	64		Mean Time to Train 250 Batches (s):	Mean Time to Test (s):	Optimal Testing Accuracy:	
+3	134.545	64		131.001 ± 2.706	318.372 ± 5.666	99.12%	
+4	131.113	64					
+5	129.326	64					
+Model 2 Performance:	Testing Accuracy:	Testing Trials:	Time to Test (s):				
+	99.12%	1	321.615				
+		2	314.121				
+		3	311.156				
+		4	319.8463				
+		5	325.124				
