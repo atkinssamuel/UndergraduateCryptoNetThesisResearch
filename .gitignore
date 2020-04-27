@@ -5,3 +5,5 @@ Dataset/
 Weights/
 weights/
 tf_function_error_*
+*.drp
+*.mov
